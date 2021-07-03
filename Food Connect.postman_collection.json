@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "0fecbe32-2d18-4b4a-baef-0518c6b2ba77",
+		"name": "Food Connect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Restaurants",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5FTQXqehToNiEFhdFUFsVs3LzB-p6GbYp4eRkwc7_klOFy3nDq2UeVozuurlvJTZY7hff99WvPXCjm_7Y6N8Ihspfyj2RsoWpbDJp4HbETewt9nEZ9aOTNgIW0XaYHYx",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/restaurants/all?lat=37.392990&long=-121.856930&offset=50",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"restaurants",
+						"all"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "37.392990"
+						},
+						{
+							"key": "long",
+							"value": "-121.856930"
+						},
+						{
+							"key": "limit",
+							"value": "50",
+							"disabled": true
+						},
+						{
+							"key": "offset",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -13,6 +13,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=254)
     latitude = models.CharField(max_length=200)
     longitude = models.CharField(max_length=200)
+    image = models.CharField(max_length=500, default="")
 
     def __str__(self):
         return self.first_name
