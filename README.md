@@ -144,3 +144,65 @@ Authorization: Basic "base64 username:password"
     "code": "<confirmation code"
 }
 ```
+
+
+## Get Restaurant List
+### Method - Get
+### Header
+    pass ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers
+
+### Request
+```
+    http://localhost:9091/app/foodzone/retaurants?lat=37.338207&long=-121.886330&offset=0
+```
+
+### Response
+```
+{
+    "success": true,
+    "restaurants": {
+        "businesses": [
+            {
+                "id": "eXprR2i_W8UKMmsYYbZFQQ",
+                "alias": "philz-coffee-san-jose-2",
+                "name": "Philz Coffee",
+                "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/gKyzJmgR_XzLkV1HzoOUWQ/o.jpg",
+                "is_closed": false,
+                "url": "https://www.yelp.com/biz/philz-coffee-san-jose-2?adjust_creative=RVCCDq3K3YzW1McQBU0OeQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=RVCCDq3K3YzW1McQBU0OeQ",
+                "review_count": 2283,
+                "categories": [
+                    {
+                        "alias": "coffee",
+                        "title": "Coffee & Tea"
+                    }
+                ],
+                "rating": 4.5,
+                "coordinates": {
+                    "latitude": 37.333609,
+                    "longitude": -121.884901
+                },
+                "transactions": [
+                    "delivery"
+                ],
+                "price": "$",
+                "location": {
+                    "address1": "118 Paseo De San Antonio Walk",
+                    "address2": "",
+                    "address3": "",
+                    "city": "San Jose",
+                    "zip_code": "95112",
+                    "country": "US",
+                    "state": "CA",
+                    "display_address": [
+                        "118 Paseo De San Antonio Walk",
+                        "San Jose, CA 95112"
+                    ]
+                },
+                "phone": "+14089714212",
+                "display_phone": "(408) 971-4212",
+                "distance": 526.6518414458316
+            }
+        ]
+    }
+}
+```
