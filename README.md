@@ -37,7 +37,7 @@ Group Members:
 <br>
 
 ## Note 
-All api response will have ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers, set these headers for further api access
+All api response will have ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers, pass ```ACCESSTOKEN``` and ```REFRESHTOKEN``` headers for further api access
 
 <br>
 
