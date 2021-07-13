@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Login from './components/Login/Login';
+import Restaurants from './components/Restaurants/Restaurants';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Register from './components/Register/Register';
+import { useState } from "react";
+import Header from "./components/Header/Header";
+import RestaurantDetails from './components/RestaurantDetails/RestaurantDetails';
 
 function App() {
+  const [errorMessage, updateErrorMessage] = useState(null);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Route exact path="/" exact={true}>
+          <Login showError={updateErrorMessage} />
+        </Route>
+        <Route exact path="/register">
+          <Register showError={updateErrorMessage} />
+        </Route>
+        <Route exact path="/restaurants">
+          <Header />
+          <Restaurants showError={updateErrorMessage} />
+        </Route>
+        <Route exact path="/restaurantsDetails">
+          <RestaurantDetails />
+        </Route>
+      </Router>
     </div>
   );
 }
