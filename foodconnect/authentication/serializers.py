@@ -20,6 +20,13 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("uuid", "last_login", "email", "latitude", "longitude", "image", "first_name", "last_name") 
     
 
+
+class UserSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("uuid", "image", "first_name", "last_name") 
+
+
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

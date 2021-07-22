@@ -1,10 +1,14 @@
+from authentication.serializers import UserSerializer
 import json
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse, HttpResponse
+
 from rest_framework import viewsets, permissions, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
+
 from friends import serializer
 from friends.exceptions import AlreadyExistsError, AlreadyFriendsError
 from friends.serializer import FriendSerializer, FriendRequestSerializer, FriendBlockSerializer, FriendFollowSerializer
@@ -97,7 +101,9 @@ class FriendViewSet(viewsets.ModelViewSet):
         try:
             if not user_id:
                 user_id = request.user.uuid
+
             queryset = Friend.objects.filter(from_user_id=user_id)
+
             serializer = FriendSerializer(queryset, many=True)
             return Response(serializer.data)
         except Exception as e:

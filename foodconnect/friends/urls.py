@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from .views import FriendsList, FriendViewSet
+from authentication.views import UserSearchViewSet
 
 
 add_friend = FriendViewSet.as_view({
@@ -35,5 +36,6 @@ urlpatterns = [
     url(r'^reject/(?P<friendship_request_id>\d+)', reject_request, name='reject_request'),
     url(r'^cancel/(?P<friendship_request_id>\d+)', cancel_request, name='cancel_request'),
     url(r'requests', list_requests, name='list_requests'),
+    url(r'^search', UserSearchViewSet.as_view({'get':'search_user'}), name='search'),
 
 ]
