@@ -12,7 +12,7 @@ class AwsDjangoMiddleware:
     def __call__(self, request):
         # path = request.get_full_path()
 
-        if os.path.basename(request.path) in ["login"]:
+        if os.path.basename(request.path) in ["login", "signup", "confirm_signup"]:
             return self.get_response(request)
         
         user, token, refresh_token, err = helpers.process_request(request)
