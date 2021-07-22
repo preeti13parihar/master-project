@@ -20,6 +20,12 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("uuid", "last_login", "email", "latitude", "longitude", "image", "first_name", "last_name") 
     
 
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("uuid","latitude", "longitude") 
+
+
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
             required=True,
