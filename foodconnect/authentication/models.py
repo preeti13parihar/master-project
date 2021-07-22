@@ -2,8 +2,9 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin, BaseUserManager
 from django.contrib.auth.validators import UnicodeUsernameValidator
-
+from django.core.validators import URLValidator
 from core.models import AbstractBaseModel
+
 
 class User(PermissionsMixin, AbstractBaseUser, AbstractBaseModel):
     username_validator = UnicodeUsernameValidator()
@@ -15,7 +16,7 @@ class User(PermissionsMixin, AbstractBaseUser, AbstractBaseModel):
     email = models.EmailField(max_length=254, unique=True)
     latitude = models.CharField(max_length=200, default="")
     longitude = models.CharField(max_length=200, default="")
-    image = models.CharField(max_length=500, default="")
+    image = models.URLField(max_length=500, blank=True, validators=[URLValidator])
 
 
     USERNAME_FIELD = 'email'
