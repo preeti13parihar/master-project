@@ -1,4 +1,5 @@
 from authentication import views
+from authentication import profile
 from django.conf.urls import url
 
 urlpatterns = [
@@ -11,5 +12,8 @@ urlpatterns = [
     url(r'^confirm_signup', views.confirm_sign_up, name='confirm_sign_up'),
     url(r'^confirm_login', views.respond_to_auth_challenge, name='confirm_login'),
     url(r'^confirm_forgot_password', views.confirm_forgot_password, name='confirm_forgot_password'),
-    url(r'^generate_csrf', views.get_csrf, name='generate_csrf')
+    url(r'^generate_csrf', views.get_csrf, name='generate_csrf'),
+    url(r'^profile/(?P<uid>[0-9a-f-]+)', profile.ProfileUpdateAPI.as_view(), name='profile'),
+    # url(r'^profile/(?P<uid>[0-9a-f-]+)/delete', profile.ProfileDeleteAPI.as_view(), name='profile_delete'),
+    # url(r'^profile/(?P<uid>[-\w]+)/delete', profile.ProfileDeleteAPI, name='profile_delete'),
 ]
