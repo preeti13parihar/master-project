@@ -4,7 +4,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     # Exclude as not appropriate for this app?
-    # path('admin/', admin.site.urls),
     url(r'^login', views.initiate_auth, name='login'),
     url(r'^logout', views.sign_out, name='logout'),
     url(r'^signup', views.sign_up, name='signup'),
@@ -14,6 +13,6 @@ urlpatterns = [
     url(r'^confirm_forgot_password', views.confirm_forgot_password, name='confirm_forgot_password'),
     url(r'^generate_csrf', views.get_csrf, name='generate_csrf'),
     url(r'^profile/(?P<uid>[0-9a-f-]+)', profile.ProfileUpdateAPI.as_view(), name='profile'),
+    url(r'^location/(?P<uid>[0-9a-f-]+)', profile.LocationUpdateAPI.as_view(), name='location'),
     # url(r'^profile/(?P<uid>[0-9a-f-]+)/delete', profile.ProfileDeleteAPI.as_view(), name='profile_delete'),
-    # url(r'^profile/(?P<uid>[-\w]+)/delete', profile.ProfileDeleteAPI, name='profile_delete'),
 ]
