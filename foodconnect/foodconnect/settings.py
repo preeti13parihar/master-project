@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'trail',
     'reviews',
     'foodzone',
+    'friends',
     'friendship',
     'authentication',
     'rest_framework',
