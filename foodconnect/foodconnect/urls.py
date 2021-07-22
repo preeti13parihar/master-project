@@ -1,8 +1,14 @@
 from foodconnect.settings import URL_PREFIX
 from django.conf import settings
 from django.contrib import admin
+from rest_framework import routers
 from django.urls import path
 from django.conf.urls import include, url
+
+from friends import views
+
+router = routers.DefaultRouter()
+router.register(r'^friends', views.FriendViewSet, basename='friends')
 
 urlpatterns = [
     url(settings.URL_PREFIX, include([
@@ -11,6 +17,9 @@ urlpatterns = [
         url(r'^auth/', include('authentication.urls')),
         url(r'^foodzone/', include('foodzone.urls')),
         url(r'^reviews/', include('reviews.urls')),
+        # url(r'^', include(router.urls)),
+
+        url(r'^friends/', include('friends.urls'))
         # url(r'^connections/', include('friends.urls'))
     ])),
     # path('admin/', admin.site.urls),
