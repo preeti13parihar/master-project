@@ -165,15 +165,12 @@ def sign_up(request):
             })
             return response
 
-
         return JsonResponse(result)
+
     except CognitoException as ex:
-        return ex
-        # return JsonResponse(ex.args[0], status=ex.status)
+        return JsonResponse(ex.args[0], status=ex.status)
     except ValueError as ex:
-        # return JsonResponse({"error": ex.args[0]}, status=400)
-        return ex
-    pass
+        return JsonResponse({"error": ex.args[0]}, status=400)
 
 
 @require_http_methods(['POST'])
@@ -187,7 +184,6 @@ def confirm_sign_up(request):
         return JsonResponse(ex.args[0], status=ex.status)
     except ValueError as ex:
         return JsonResponse({"error": ex.args[0]}, status=400)
-    pass
 
 
 @require_http_methods(['GET'])
