@@ -1,3 +1,5 @@
+from botocore import serialize
+from django.http import request
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
@@ -6,10 +8,29 @@ from django.contrib.auth.password_validation import validate_password
 from authentication.models import User
 
 
+class UpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("latitude", "longitude", "image", "first_name", "last_name") 
+    
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ("uuid", "last_login", "email", "latitude", "longitude", "image", "first_name", "last_name") 
+    
+
+
+class UserSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("uuid", "image", "first_name", "last_name") 
+
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("uuid","latitude", "longitude") 
 
 
 class RegisterSerializer(serializers.ModelSerializer):

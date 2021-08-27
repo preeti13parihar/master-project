@@ -1,12 +1,19 @@
+import json
+
 from datetime import timedelta
 from django.conf import settings
 from django.utils.datetime_safe import datetime
-import json
-from django.http import JsonResponse, HttpResponseRedirect
+from django.db.models import Q
+
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.views.decorators.http import require_http_methods
 
+from rest_framework import viewsets, permissions
+from rest_framework.decorators import action
 
+from authentication.serializers import UserSearchSerializer
+from authentication.models import User
 from authentication.cognito import helpers
 from authentication.cognito import constants, actions
 from django.contrib.auth import get_user_model
@@ -14,6 +21,27 @@ from django.contrib.auth import get_user_model
 from authentication.cognito.base import CognitoException
 from authentication.middleware.helpers import generate_csrf, get_userid_password_from_header, create_or_get_user
 
+
+class UserSearchViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSearchSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # lookup_url_kwarg = "name"
+
+    @action(methods=["GET"], detail=True)
+    def search_user(self, request):
+        try:
+            # frnd_request = get_object_or_404(FriendshipRequest, id=friendship_request_id)
+            name = request.query_params.get('name')
+            if not name:
+                return JsonResponse([], safe=False)
+
+            result = User.objects.filter(Q(last_name__icontains=name) | 
+                            Q(first_name__icontains=name))
+            resp = UserSearchSerializer(result, many=True)
+            return JsonResponse(resp.data, safe=False)
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
 
 
 @require_http_methods(['POST'])
@@ -137,15 +165,12 @@ def sign_up(request):
             })
             return response
 
-
         return JsonResponse(result)
+
     except CognitoException as ex:
-        return ex
-        # return JsonResponse(ex.args[0], status=ex.status)
+        return JsonResponse(ex.args[0], status=ex.status)
     except ValueError as ex:
-        # return JsonResponse({"error": ex.args[0]}, status=400)
-        return ex
-    pass
+        return JsonResponse({"error": ex.args[0]}, status=400)
 
 
 @require_http_methods(['POST'])
@@ -159,7 +184,6 @@ def confirm_sign_up(request):
         return JsonResponse(ex.args[0], status=ex.status)
     except ValueError as ex:
         return JsonResponse({"error": ex.args[0]}, status=400)
-    pass
 
 
 @require_http_methods(['GET'])
@@ -174,3 +198,5 @@ def get_csrf(request):
                         expires=datetime.now() + timedelta(days=30))
 
     return response
+
+
