@@ -18,8 +18,8 @@ urlpatterns = [
         url(r'^foodzone/', include('foodzone.urls')),
         url(r'^reviews/', include('reviews.urls')),
         # url(r'^', include(router.urls)),
-
-        url(r'^friends/', include('friends.urls'))
+        url(r'^friends/', include('friends.urls')),
+        url(r'^trail/', include('trail.urls')),
         # url(r'^connections/', include('friends.urls'))
     ])),
     # path('admin/', admin.site.urls),
