@@ -2,6 +2,7 @@ import uuid
 from authentication.models import User
 from django.db import models
 
+
 class Trail(models.Model):
     visit_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -20,3 +21,21 @@ class Trail(models.Model):
 
     def __str__(self):
         return self.user_id.first_name + ' -> ' + self.name
+
+    def returnObject(self):
+        dic = {
+            "visit_id": self.visit_id,
+            'restaurant_id': self.restaurant_id,
+            'name': self.name,
+            'latitude': self.latitude,
+            'longitude': self.longitude,
+            'image_url': self.image_url,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'country': self.country,
+            'zipcode': self.zipcode,
+            'phone': self.phone,
+            'price': self.price
+        }
+        return dic
