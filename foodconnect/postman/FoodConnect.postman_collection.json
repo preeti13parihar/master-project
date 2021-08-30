@@ -418,6 +418,97 @@
 			"name": "trail",
 			"item": [
 				{
+					"name": "Add Trail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "ACCESSTOKEN",
+								"value": "eyJraWQiOiJXVUtCbmVJNTVVYUROd1llSFwvc0lcL3Z3MjlucVZJSG1MQTFnaFM3UkczN2c9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMmEyZGVmNTItMWU1OS00ZjBmLThlYWMtYzk0NzQ5OGIzNDZkIiwic3ViIjoiNWU3YjQxZjQtOGU5Zi00OTJiLTk3MDgtNWRkMzQ5NzFmMzNmIiwiZXZlbnRfaWQiOiJhMTlkNWE1YS01N2Y4LTQzODYtYjVhMS0zODkyYmQ4ZjMwMTAiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjMwMDQ5Mjg5LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl95VHBIUWdPNW8iLCJleHAiOjE2MzAwNTI4ODksImlhdCI6MTYzMDA0OTI4OSwianRpIjoiNGNjZjFjOTItODBmNS00NzIwLWJlZWYtNmQ1ZWMxYTY2ZTU1IiwiY2xpZW50X2lkIjoiNzlhb2lxdmhibjJtc290MG12YmNrdGJnZzkiLCJ1c2VybmFtZSI6IjVlN2I0MWY0LThlOWYtNDkyYi05NzA4LTVkZDM0OTcxZjMzZiJ9.aVlcpbY3WrvOY1M2dDTLberMY9nuhFPQbQ2vYwPBVIJl6Wm2zvdwzPnhvyjKwmHu3ziRfUuJHGiU1Ufpwrtgrt8IwCvl1ZxWjL2TdUTsO6Po6ejC-dKuoQva5yc0kU7yzSSmkQKpbHTU1wOnYD_ER8hTzg_5LaWw_TKrJ9IPomBwRfJSsrgCaxmVAnwi_uqgHfrLMj-1E2aQQ2BLe2Aci-fT0Vqh7d_dcCFleX-VQ2CGsiTs09tgkRc6IVGByhf0nCv2fiJLity9PXjRDMYMOQKaMg72UaSrzfDpTSlXEC1haQnReXtcPRnN46xp_lgZk5ie99j1VVD_Zr0ITy1diA",
+								"type": "text"
+							},
+							{
+								"key": "REFRESHTOKEN",
+								"value": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.hOIdXEMEHfns8BizLmm9_WDtBIqyVkplAXoAJlv8tM8AuLqUgt3MLlY7fbvZlQ1aLZ72Duj8zDzPdQXmmAbRrUfYv7MG9-rPOYSTlBLqVUFQ6qxuWVCj2dsrhR1DoeJBAiE34Eb8tYMDZy_ZgnhSkI5oI7SGljr0nVwze9Ssp7OChKUy5l3AlVfUGK9BczmpOFqUIwV8oxvtuDUXrnA4w3yHlFI_h0iKgo7M2YWmB8vb-62M4cb0b_2eVT3R-Fb99ChnEEYJ-wy_jgjsPe6i0WwKOTopfoSXfAD7drwGzHcjkk1Pr44atjYjL7XeYnl0jsuo7JW2i_mJaSEo-QaBeg.0KM_bYVXPRcagmdm.TSJHwk6CHFugHgssBT4tgk8xxbqNOxXrdVMJS_Bj7MPa_jcv3xghsz3XMvC1zNXwwQ2orQauAmz35WGX44sWFHl9voWlLcwaS31rJeYkhS4vwQCSXNwz-ClrtuMcNYLuuv2eB4BiXJoSD7QCmk_p5YSzo-xtmUm4f9OcLJeXXTpIJfxv7W5cJpiN1LGnetJOtmCSGYZCIPgmEXmB11-XmyQ0xTwJVe1Q3Z95Q8-lkuX_xyJVRvGA3dDPajHoZ6YaJEDnVgUdAU9I2oxXs15R3S1U919-CVOF5JhWSvddnX74qGrbO19ZpotWl23P5usr0fJgxoJASP2GzuOOiJbpYWltDPQEBXJ4b01veOSaS_-jiDdlzip84pAPtfi_Pbjp4lQxQDJLwlOsNkW_ykLs4y9MUTYQ9rvLTG7Nfu9q53Dxzb1l91G4SLF9SqQJ_X3gK37TGZv6N6peyEz872jg6DSF5jV5f382ivq9huDJ0EviNZtmcRzVjmAw67SA_7zO9SZAGrx4ayBhKb_n_7jXLYoxEjj61uxJoRIQBy8w1EnCri1oPBkQAT97tBu1jE_NdubS2ojEfeWu-Xy1m1d3zCgiPDFUTkwZThBgpxivY6wZrz2-kO7bziGPWxdhGUOFG--WB1vKCBvIY_MXy2J5SbHPzkSzT9R5pGMKj64xXqByh-nY16I1kcFfBQypjbhV84jE-izzCcRhppNZSCQMZD4yoxoKVGoizmODMY2wjVP5MayOC3FL5mirmpD8o8n8cGcx-4go_v7bQ69oekF-nF70Uak_nzxe9HmEVwCOTMJQHDLU5hHgyGcgom9XKHI7xM-iDqDX1Wlzo8rw4w0VfYlEn1GUhMhJvKf3Nu8_YAYPGx-YZ9KNthEl1-dCAKmIUBOOaBsxhfTg6GfTcGaYeDwk6Koldn1gt7-euKMK4DYR-DlIeQ6PIX6XEY0_XkfSVauYfJuad4P2Vp5AoO3L9OpzN98n3LRdUCmemQxi55DHYesFQ7iVhmsGUFNn50JWJj0lr7rBmFwloogD9cbLjizNW3oDbUL8MX1XyNwovim8ppo8OvDn1sq3VayDgQ9aQptoy-3dXFQk8rzW8dvTz8txRMh623OZFy-TCY_mzGpnQtQ2bme_buGb8DqyvIUBxJ28tgquNj0BOdSS0cWKTZLyMsgxAygjWaZEb-Q9VsDvt51MoRlnnVgQoLpC_-BTdlmEfl__1wdMrt5k-oCAd3IfbUSA_1t0eWcGz27Uj2DK4tv4NzjF7YGbxSaH4B9hEvs98XzYvujce2VpAsE8EqKzaxe5udq-M_QqEE0H2p4nv4ESi1t0vciXIvo.i1V65BWO9mDkE2-ZBLwHfg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"latitude\": 40.726086,\n\"longitude\": -73.952308,\n\"address\": \"727 Manhattan Ave\",\n\"city\": \"Brooklyn\",\n\"country\": \"US\",\n\"state\": \"NY\",\n\"zipcode\": \"11222\",\n\"phone\": \"+17183893676\",\n\"price\": \"$\",\n\"restaurant_id\": \"O0xFECgTDf1rbZzW9qUULQ\",\n\"name\": \"Peter Pan Donut & Pastry Shop\",\n\"image_url\": \"https://s3-media3.fl.yelpcdn.com/bphoto/HDnInssfBVBX6cOke14p9w/o.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/app/trail/addTrail",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"app",
+								"trail",
+								"addTrail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of trails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "ACCESSTOKEN",
+								"value": "eyJraWQiOiJXVUtCbmVJNTVVYUROd1llSFwvc0lcL3Z3MjlucVZJSG1MQTFnaFM3UkczN2c9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMmEyZGVmNTItMWU1OS00ZjBmLThlYWMtYzk0NzQ5OGIzNDZkIiwic3ViIjoiNWU3YjQxZjQtOGU5Zi00OTJiLTk3MDgtNWRkMzQ5NzFmMzNmIiwiZXZlbnRfaWQiOiJhMTlkNWE1YS01N2Y4LTQzODYtYjVhMS0zODkyYmQ4ZjMwMTAiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjMwMDQ5Mjg5LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl95VHBIUWdPNW8iLCJleHAiOjE2MzAwNTI4ODksImlhdCI6MTYzMDA0OTI4OSwianRpIjoiNGNjZjFjOTItODBmNS00NzIwLWJlZWYtNmQ1ZWMxYTY2ZTU1IiwiY2xpZW50X2lkIjoiNzlhb2lxdmhibjJtc290MG12YmNrdGJnZzkiLCJ1c2VybmFtZSI6IjVlN2I0MWY0LThlOWYtNDkyYi05NzA4LTVkZDM0OTcxZjMzZiJ9.aVlcpbY3WrvOY1M2dDTLberMY9nuhFPQbQ2vYwPBVIJl6Wm2zvdwzPnhvyjKwmHu3ziRfUuJHGiU1Ufpwrtgrt8IwCvl1ZxWjL2TdUTsO6Po6ejC-dKuoQva5yc0kU7yzSSmkQKpbHTU1wOnYD_ER8hTzg_5LaWw_TKrJ9IPomBwRfJSsrgCaxmVAnwi_uqgHfrLMj-1E2aQQ2BLe2Aci-fT0Vqh7d_dcCFleX-VQ2CGsiTs09tgkRc6IVGByhf0nCv2fiJLity9PXjRDMYMOQKaMg72UaSrzfDpTSlXEC1haQnReXtcPRnN46xp_lgZk5ie99j1VVD_Zr0ITy1diA",
+								"type": "text"
+							},
+							{
+								"key": "REFRESHTOKEN",
+								"value": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.hOIdXEMEHfns8BizLmm9_WDtBIqyVkplAXoAJlv8tM8AuLqUgt3MLlY7fbvZlQ1aLZ72Duj8zDzPdQXmmAbRrUfYv7MG9-rPOYSTlBLqVUFQ6qxuWVCj2dsrhR1DoeJBAiE34Eb8tYMDZy_ZgnhSkI5oI7SGljr0nVwze9Ssp7OChKUy5l3AlVfUGK9BczmpOFqUIwV8oxvtuDUXrnA4w3yHlFI_h0iKgo7M2YWmB8vb-62M4cb0b_2eVT3R-Fb99ChnEEYJ-wy_jgjsPe6i0WwKOTopfoSXfAD7drwGzHcjkk1Pr44atjYjL7XeYnl0jsuo7JW2i_mJaSEo-QaBeg.0KM_bYVXPRcagmdm.TSJHwk6CHFugHgssBT4tgk8xxbqNOxXrdVMJS_Bj7MPa_jcv3xghsz3XMvC1zNXwwQ2orQauAmz35WGX44sWFHl9voWlLcwaS31rJeYkhS4vwQCSXNwz-ClrtuMcNYLuuv2eB4BiXJoSD7QCmk_p5YSzo-xtmUm4f9OcLJeXXTpIJfxv7W5cJpiN1LGnetJOtmCSGYZCIPgmEXmB11-XmyQ0xTwJVe1Q3Z95Q8-lkuX_xyJVRvGA3dDPajHoZ6YaJEDnVgUdAU9I2oxXs15R3S1U919-CVOF5JhWSvddnX74qGrbO19ZpotWl23P5usr0fJgxoJASP2GzuOOiJbpYWltDPQEBXJ4b01veOSaS_-jiDdlzip84pAPtfi_Pbjp4lQxQDJLwlOsNkW_ykLs4y9MUTYQ9rvLTG7Nfu9q53Dxzb1l91G4SLF9SqQJ_X3gK37TGZv6N6peyEz872jg6DSF5jV5f382ivq9huDJ0EviNZtmcRzVjmAw67SA_7zO9SZAGrx4ayBhKb_n_7jXLYoxEjj61uxJoRIQBy8w1EnCri1oPBkQAT97tBu1jE_NdubS2ojEfeWu-Xy1m1d3zCgiPDFUTkwZThBgpxivY6wZrz2-kO7bziGPWxdhGUOFG--WB1vKCBvIY_MXy2J5SbHPzkSzT9R5pGMKj64xXqByh-nY16I1kcFfBQypjbhV84jE-izzCcRhppNZSCQMZD4yoxoKVGoizmODMY2wjVP5MayOC3FL5mirmpD8o8n8cGcx-4go_v7bQ69oekF-nF70Uak_nzxe9HmEVwCOTMJQHDLU5hHgyGcgom9XKHI7xM-iDqDX1Wlzo8rw4w0VfYlEn1GUhMhJvKf3Nu8_YAYPGx-YZ9KNthEl1-dCAKmIUBOOaBsxhfTg6GfTcGaYeDwk6Koldn1gt7-euKMK4DYR-DlIeQ6PIX6XEY0_XkfSVauYfJuad4P2Vp5AoO3L9OpzN98n3LRdUCmemQxi55DHYesFQ7iVhmsGUFNn50JWJj0lr7rBmFwloogD9cbLjizNW3oDbUL8MX1XyNwovim8ppo8OvDn1sq3VayDgQ9aQptoy-3dXFQk8rzW8dvTz8txRMh623OZFy-TCY_mzGpnQtQ2bme_buGb8DqyvIUBxJ28tgquNj0BOdSS0cWKTZLyMsgxAygjWaZEb-Q9VsDvt51MoRlnnVgQoLpC_-BTdlmEfl__1wdMrt5k-oCAd3IfbUSA_1t0eWcGz27Uj2DK4tv4NzjF7YGbxSaH4B9hEvs98XzYvujce2VpAsE8EqKzaxe5udq-M_QqEE0H2p4nv4ESi1t0vciXIvo.i1V65BWO9mDkE2-ZBLwHfg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/app/trail/getTrail",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"app",
+								"trail",
+								"getTrail"
+							],
+							"query": [
+								{
+									"key": "ACCESSTOKEN",
+									"value": "eyJraWQiOiJXVUtCbmVJNTVVYUROd1llSFwvc0lcL3Z3MjlucVZJSG1MQTFnaFM3UkczN2c9IiwiYWxnIjoiUlMyNTYifQ.eyJvcmlnaW5fanRpIjoiMmEyZGVmNTItMWU1OS00ZjBmLThlYWMtYzk0NzQ5OGIzNDZkIiwic3ViIjoiNWU3YjQxZjQtOGU5Zi00OTJiLTk3MDgtNWRkMzQ5NzFmMzNmIiwiZXZlbnRfaWQiOiJhMTlkNWE1YS01N2Y4LTQzODYtYjVhMS0zODkyYmQ4ZjMwMTAiLCJ0b2tlbl91c2UiOiJhY2Nlc3MiLCJzY29wZSI6ImF3cy5jb2duaXRvLnNpZ25pbi51c2VyLmFkbWluIiwiYXV0aF90aW1lIjoxNjMwMDQ5Mjg5LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl95VHBIUWdPNW8iLCJleHAiOjE2MzAwNTI4ODksImlhdCI6MTYzMDA0OTI4OSwianRpIjoiNGNjZjFjOTItODBmNS00NzIwLWJlZWYtNmQ1ZWMxYTY2ZTU1IiwiY2xpZW50X2lkIjoiNzlhb2lxdmhibjJtc290MG12YmNrdGJnZzkiLCJ1c2VybmFtZSI6IjVlN2I0MWY0LThlOWYtNDkyYi05NzA4LTVkZDM0OTcxZjMzZiJ9.aVlcpbY3WrvOY1M2dDTLberMY9nuhFPQbQ2vYwPBVIJl6Wm2zvdwzPnhvyjKwmHu3ziRfUuJHGiU1Ufpwrtgrt8IwCvl1ZxWjL2TdUTsO6Po6ejC-dKuoQva5yc0kU7yzSSmkQKpbHTU1wOnYD_ER8hTzg_5LaWw_TKrJ9IPomBwRfJSsrgCaxmVAnwi_uqgHfrLMj-1E2aQQ2BLe2Aci-fT0Vqh7d_dcCFleX-VQ2CGsiTs09tgkRc6IVGByhf0nCv2fiJLity9PXjRDMYMOQKaMg72UaSrzfDpTSlXEC1haQnReXtcPRnN46xp_lgZk5ie99j1VVD_Zr0ITy1diA",
+									"disabled": true
+								},
+								{
+									"key": "REFRESHTOKEN",
+									"value": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.hOIdXEMEHfns8BizLmm9_WDtBIqyVkplAXoAJlv8tM8AuLqUgt3MLlY7fbvZlQ1aLZ72Duj8zDzPdQXmmAbRrUfYv7MG9-rPOYSTlBLqVUFQ6qxuWVCj2dsrhR1DoeJBAiE34Eb8tYMDZy_ZgnhSkI5oI7SGljr0nVwze9Ssp7OChKUy5l3AlVfUGK9BczmpOFqUIwV8oxvtuDUXrnA4w3yHlFI_h0iKgo7M2YWmB8vb-62M4cb0b_2eVT3R-Fb99ChnEEYJ-wy_jgjsPe6i0WwKOTopfoSXfAD7drwGzHcjkk1Pr44atjYjL7XeYnl0jsuo7JW2i_mJaSEo-QaBeg.0KM_bYVXPRcagmdm.TSJHwk6CHFugHgssBT4tgk8xxbqNOxXrdVMJS_Bj7MPa_jcv3xghsz3XMvC1zNXwwQ2orQauAmz35WGX44sWFHl9voWlLcwaS31rJeYkhS4vwQCSXNwz-ClrtuMcNYLuuv2eB4BiXJoSD7QCmk_p5YSzo-xtmUm4f9OcLJeXXTpIJfxv7W5cJpiN1LGnetJOtmCSGYZCIPgmEXmB11-XmyQ0xTwJVe1Q3Z95Q8-lkuX_xyJVRvGA3dDPajHoZ6YaJEDnVgUdAU9I2oxXs15R3S1U919-CVOF5JhWSvddnX74qGrbO19ZpotWl23P5usr0fJgxoJASP2GzuOOiJbpYWltDPQEBXJ4b01veOSaS_-jiDdlzip84pAPtfi_Pbjp4lQxQDJLwlOsNkW_ykLs4y9MUTYQ9rvLTG7Nfu9q53Dxzb1l91G4SLF9SqQJ_X3gK37TGZv6N6peyEz872jg6DSF5jV5f382ivq9huDJ0EviNZtmcRzVjmAw67SA_7zO9SZAGrx4ayBhKb_n_7jXLYoxEjj61uxJoRIQBy8w1EnCri1oPBkQAT97tBu1jE_NdubS2ojEfeWu-Xy1m1d3zCgiPDFUTkwZThBgpxivY6wZrz2-kO7bziGPWxdhGUOFG--WB1vKCBvIY_MXy2J5SbHPzkSzT9R5pGMKj64xXqByh-nY16I1kcFfBQypjbhV84jE-izzCcRhppNZSCQMZD4yoxoKVGoizmODMY2wjVP5MayOC3FL5mirmpD8o8n8cGcx-4go_v7bQ69oekF-nF70Uak_nzxe9HmEVwCOTMJQHDLU5hHgyGcgom9XKHI7xM-iDqDX1Wlzo8rw4w0VfYlEn1GUhMhJvKf3Nu8_YAYPGx-YZ9KNthEl1-dCAKmIUBOOaBsxhfTg6GfTcGaYeDwk6Koldn1gt7-euKMK4DYR-DlIeQ6PIX6XEY0_XkfSVauYfJuad4P2Vp5AoO3L9OpzN98n3LRdUCmemQxi55DHYesFQ7iVhmsGUFNn50JWJj0lr7rBmFwloogD9cbLjizNW3oDbUL8MX1XyNwovim8ppo8OvDn1sq3VayDgQ9aQptoy-3dXFQk8rzW8dvTz8txRMh623OZFy-TCY_mzGpnQtQ2bme_buGb8DqyvIUBxJ28tgquNj0BOdSS0cWKTZLyMsgxAygjWaZEb-Q9VsDvt51MoRlnnVgQoLpC_-BTdlmEfl__1wdMrt5k-oCAd3IfbUSA_1t0eWcGz27Uj2DK4tv4NzjF7YGbxSaH4B9hEvs98XzYvujce2VpAsE8EqKzaxe5udq-M_QqEE0H2p4nv4ESi1t0vciXIvo.i1V65BWO9mDkE2-ZBLwHfg",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get List of Restaurant",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -446,27 +537,23 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseURL}}/app/foodzone/retaurants?lat=37.338207&long=-121.886330&offset=0",
+							"raw": "{{baseURL}}/app/trail/restaurants?long=-73.935242&lat=40.730610",
 							"host": [
 								"{{baseURL}}"
 							],
 							"path": [
 								"app",
-								"foodzone",
-								"retaurants"
+								"trail",
+								"restaurants"
 							],
 							"query": [
 								{
-									"key": "lat",
-									"value": "37.338207"
-								},
-								{
 									"key": "long",
-									"value": "-121.886330"
+									"value": "-73.935242"
 								},
 								{
-									"key": "offset",
-									"value": "0"
+									"key": "lat",
+									"value": "40.730610"
 								}
 							]
 						}
