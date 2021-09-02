@@ -17,3 +17,10 @@ class CognitoException(Exception):
     def create_from_exception(ex):
         return CognitoException({'error': ex.response['Error']['Message']},
                                 ex.response['ResponseMetadata']['HTTPStatusCode'])
+
+
+class AppException(Exception):
+    def __init__(self, message, status):
+        super(Exception, self).__init__(message)
+
+        self.status = status

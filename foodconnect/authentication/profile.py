@@ -11,7 +11,7 @@ class ProfileUpdateAPI(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    lookup_url_kwarg = "uid"
+    # lookup_url_kwarg = "uid"
 
     def get_serializer_class(self):
         if self.request.method in ["PUT", "PATCH"]:
@@ -23,15 +23,15 @@ class ProfileUpdateAPI(generics.RetrieveUpdateAPIView):
         return super().update(request, *args, **kwargs)
 
     def get_object(self,):
-        uid = self.kwargs["uid"]
-        return get_object_or_404(User, uuid=uid)
+        # uid = self.kwargs["uid"]
+        return get_object_or_404(User, uuid=self.request.user.uuid)
 
 
 class LocationUpdateAPI(generics.RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = LocationSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
-    lookup_url_kwarg = "uid"
+    # lookup_url_kwarg = "uid"
 
 
     def put(self, request, *args, **kwargs):
@@ -39,5 +39,5 @@ class LocationUpdateAPI(generics.RetrieveUpdateAPIView):
         return super().update(request, *args, **kwargs)
 
     def get_object(self,):
-        uid = self.kwargs["uid"]
-        return get_object_or_404(User, uuid=uid)
+        # uid = self.kwargs["uid"]
+        return get_object_or_404(User, uuid=self.request.user.uuid)

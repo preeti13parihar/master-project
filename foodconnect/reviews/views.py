@@ -36,5 +36,5 @@ class ImageUploader(APIView):
                 return Response(file_serialzer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
-            print(str(e))
+            raise Exception("Error while uploading image: " + str(e))                
 

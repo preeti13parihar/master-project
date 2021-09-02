@@ -1,4 +1,5 @@
 import os
+import logging
 import json
 from urllib import request
 from pathlib import Path
@@ -36,7 +37,13 @@ S3_FILE_URL = f"http://s3-{AWS_REGION}.amazonaws.com/{S3_BUCKET}/"
 DB_NAME = os.getenv("DB_NAME", None)
 DB_USERNAME = os.getenv("DB_USERNAME", None)
 DB_PASSWORD = os.getenv("DB_PASSWORD", None)
-HOST = os.getenv("HOST", "localhost")
+HOST = os.getenv("HOST", "127.0.0.1")
+PORT = os.getenv("PORT", 9091)
+ENV = os.getenv("ENV", "local")
+LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
+SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN", "localhost")
+SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", True)
+SESSION_COOKIE_EXPIRY = os.getenv("SESSION_COOKIE_EXPIRY", 1)
 
 
 if not APP_CLIENT_ID:
@@ -60,13 +67,16 @@ elif not DB_USERNAME:
 elif not DB_PASSWORD:
     print("Please set DB_PASSWORD !!!")
 
+from utils import log
+log.validate_log_level(LOG_LEVEL)
 
 HTTP_ONLY_COOKIE = True
 USE_CSRF = False
 AUTO_CREATE_USER = True
 SECURE_COOKIE = True
-
 APPEND_SLASH=False
+
+CORS_WHITELIST_FILEPATH = os.getenv("CORS_WHITELIST_FILEPATH", "./cors.list")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
