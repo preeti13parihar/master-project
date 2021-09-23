@@ -30,6 +30,7 @@ list_friends = FriendViewSet.as_view({
 
 
 urlpatterns = [
+    url(r'^list', list_friends, name='list_friends'),
     url(r'^list/(?P<user_id>\w+)', list_friends, name='list_friends'),
     url(r'^add', add_friend, name='add_friend'),
     url(r'^accept/(?P<friendship_request_id>\d+)', accept_request, name='accept_request'),
