@@ -6,3 +6,7 @@ class ImageSerialzer(serializers.ModelSerializer):
     class Meta:
         model = Images
         fields = ('description',)
+
+
+class FileSerializer(serializers.Serializer):
+    file = serializers.FileField(max_length=None, allow_empty_file=False)
