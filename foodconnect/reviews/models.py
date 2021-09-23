@@ -17,6 +17,7 @@ class Reviews(models.Model):
 
 
 class Images(models.Model):
+    review_id = models.ForeignKey('Reviews', on_delete=models.CASCADE)
     url = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     uploaded_at = models.DateTimeField(auto_now_add=True)

@@ -98,6 +98,10 @@ class FriendViewSet(viewsets.ModelViewSet):
 
     @action(methods=["GET"], detail=True)
     def list_friends(self, request, user_id=None):
+        """
+            if user_id belongs to other user then it will list that user's friend list
+            otherwise if it is missing it will return current logged in user's friend list 
+        """
         try:
             if not user_id:
                 user_id = request.user.uuid
