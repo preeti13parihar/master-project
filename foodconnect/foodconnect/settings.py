@@ -18,7 +18,10 @@ SECRET_KEY = 'django-insecure-r8mzzw8s#z01iv8_mn3udrvnnr^2=%r-a#@am5(k+)%_20quu+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS= True
 
 # Application definition
 URL_PREFIX = "app/"
@@ -94,10 +97,12 @@ INSTALLED_APPS = [
     'friendship',
     'authentication',
     'rest_framework',
+    'corsheaders'
 ]
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -108,7 +113,7 @@ MIDDLEWARE = [
 
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.auth.middleware.RemoteUserMiddleware',
-    'authentication.middleware.cognito_django_middleware.AwsDjangoMiddleware'  
+    'authentication.middleware.cognito_django_middleware.AwsDjangoMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
