@@ -1,4 +1,5 @@
 import os
+import logging
 import json
 from urllib import request
 from pathlib import Path
@@ -19,7 +20,10 @@ SECRET_KEY = 'django-insecure-r8mzzw8s#z01iv8_mn3udrvnnr^2=%r-a#@am5(k+)%_20quu+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS= True
 
 # Application definition
 URL_PREFIX = "app/"
@@ -38,7 +42,13 @@ S3_FILE_URL = f"http://s3-{AWS_REGION}.amazonaws.com/{S3_BUCKET}/"
 DB_NAME = os.getenv("DB_NAME", None)
 DB_USERNAME = os.getenv("DB_USERNAME", None)
 DB_PASSWORD = os.getenv("DB_PASSWORD", None)
-HOST = os.getenv("HOST", "localhost")
+HOST = os.getenv("HOST", "127.0.0.1")
+PORT = os.getenv("PORT", 9091)
+ENV = os.getenv("ENV", "local")
+LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
+SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN", "localhost")
+SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", True)
+SESSION_COOKIE_EXPIRY = os.getenv("SESSION_COOKIE_EXPIRY", 1)
 
 
 if not APP_CLIENT_ID:
@@ -62,13 +72,16 @@ elif not DB_USERNAME:
 elif not DB_PASSWORD:
     print("Please set DB_PASSWORD !!!")
 
+from utils import log
+log.validate_log_level(LOG_LEVEL)
 
 HTTP_ONLY_COOKIE = True
 USE_CSRF = False
 AUTO_CREATE_USER = True
 SECURE_COOKIE = True
-
 APPEND_SLASH=False
+
+CORS_WHITELIST_FILEPATH = os.getenv("CORS_WHITELIST_FILEPATH", "./cors.list")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,10 +99,12 @@ INSTALLED_APPS = [
     'friendship',
     'authentication',
     'rest_framework',
+    'corsheaders'
 ]
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -100,7 +115,7 @@ MIDDLEWARE = [
 
     # 'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.auth.middleware.RemoteUserMiddleware',
-    'authentication.middleware.cognito_django_middleware.AwsDjangoMiddleware'  
+    'authentication.middleware.cognito_django_middleware.AwsDjangoMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [

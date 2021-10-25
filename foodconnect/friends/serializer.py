@@ -5,9 +5,12 @@ from friendship import models
 
 
 class FriendSerializer(serializers.ModelSerializer):
+    first_name = serializers.ReadOnlyField()
+    last_name = serializers.ReadOnlyField()
+
     class Meta:
         model = models.Friend
-        fields = '__all__'
+        fields = "__all__" #("created", "to_user", "from_user", "first_name", "last_name")
     
 
 class FriendRequestSerializer(serializers.ModelSerializer):

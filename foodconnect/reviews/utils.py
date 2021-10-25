@@ -22,4 +22,4 @@ def upload_image(file):
         return url
 
     except Exception as e:
-        raise Exception("Error while uploading image: " + str(e))
+        raise e
