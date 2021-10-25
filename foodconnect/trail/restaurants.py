@@ -18,7 +18,8 @@ class RestaurantViewSet(viewsets.ModelViewSet):
                 'latitude': request.GET['lat'],
                 'longitude': request.GET['long'],
                 'offset': request.GET.get("offset", 0),
-                'limit': 50
+                'limit': 50,
+                'term': 'restaurants'
             }
 
             url = 'https://api.yelp.com/v3/businesses/search'
