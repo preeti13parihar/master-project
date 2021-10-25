@@ -59,7 +59,7 @@ class TrailViewSet(viewsets.ModelViewSet):
     @action(methods=["GET"], detail=True)
     def get_trail(self, request):
         try:
-            user_id = request.GET['uuid'] if 'uuid' in request.GET['uuid'] else request.user.uuid
+            user_id = request.GET['uuid'] if 'uuid' in request.GET else request.user.uuid
             all_trails = Trail.objects.filter(user_id=user_id).values()
             friends = Friend.objects.filter(from_user_id=user_id).values()
             success_response = {'success': True, 'trails': list(all_trails), 'trailCount': len(list(all_trails)), 'friendCount': len(list(friends))}
