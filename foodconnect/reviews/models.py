@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Reviews(models.Model):
-    review_id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
+    review_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant_id = models.CharField(max_length=200)
     rating = models.IntegerField()
