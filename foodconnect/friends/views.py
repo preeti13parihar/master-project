@@ -108,6 +108,27 @@ class FriendViewSet(viewsets.ModelViewSet):
 
 
     @action(methods=["GET"], detail=True)
+    def list_sent_requests(self, request):
+        try:
+            request_set = Friend.objects.sent_requests(request.user)
+            result =[]
+            for request in request_set:
+                result.append({
+                    "id": request.id,
+                    "to_user": str(request.to_user.uuid).replace("-",""),
+                    "first_name": request.to_user.first_name,
+                    "last_name": request.to_user.last_name,
+                    "sent_at": request.created
+                })
+                
+            # serializer = FriendSerializer(request_set, many=True)
+            # return Response(serializer.data)
+            return Response(result)
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
+
+
+    @action(methods=["GET"], detail=True)
     def list_friends(self, request, user_id=None):
         """
             if user_id belongs to other user then it will list that user's friend list
