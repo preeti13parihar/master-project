@@ -1,7 +1,7 @@
 import uuid
 from authentication.models import User
 from django.db import models
-
+from django.utils import timezone
 
 class Trail(models.Model):
     visit_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -18,6 +18,7 @@ class Trail(models.Model):
     zipcode = models.CharField(max_length=200)
     phone = models.CharField(max_length=200)
     price = models.CharField(max_length=200)
+    created_on = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.user_id.first_name + ' -> ' + self.name
