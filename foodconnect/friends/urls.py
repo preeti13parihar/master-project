@@ -32,14 +32,18 @@ list_friends = FriendViewSet.as_view({
     'get': 'list_friends'
 })
 
+remove_friend = FriendViewSet.as_view({
+    'get': 'remove_friend'
+})
+
 get_friend_recommendation = FriendRecommendationViewSet.as_view({
     'get': 'get_friend_recommendation'
 })
 
-
 urlpatterns = [
     url(r'^list/$', list_friends, name='list_friends'),
     url(r'^list/(?P<user_id>\w+)/$', list_friends, name='list_friends'),
+    url(r'^unfriend/(?P<user_id>\w+)/$', remove_friend, name='remove_friend'),
     url(r'^add/$', add_friend, name='add_friend'),
     url(r'^accept/(?P<friendship_request_id>\d+)/$', accept_request, name='accept_request'),
     url(r'^reject/(?P<friendship_request_id>\d+)/$', reject_request, name='reject_request'),

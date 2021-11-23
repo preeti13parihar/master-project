@@ -1,5 +1,6 @@
 from botocore import serialize
 from django.http import request
+from friendship.models import Friend
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
@@ -25,6 +26,13 @@ class UserSearchSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ("uuid", "image", "first_name", "last_name") 
+
+    is_friend = serializers.SerializerMethodField(read_only=True)
+    
+    def get_is_friend(self, obj):
+        friends = Friend.objects.filter(from_user_id=obj.uuid)
+        
+        return user.first_name
 
 
 class LocationSerializer(serializers.ModelSerializer):

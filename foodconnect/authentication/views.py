@@ -14,6 +14,7 @@ from rest_framework.decorators import action
 
 from authentication.serializers import UserSearchSerializer
 from authentication.models import User
+from friendship.models import Friend
 from authentication.cognito import helpers
 from authentication.cognito import constants, actions
 from django.contrib.auth import get_user_model
@@ -32,14 +33,50 @@ class UserSearchViewSet(viewsets.ModelViewSet):
     def search_user(self, request):
         try:
             # frnd_request = get_object_or_404(FriendshipRequest, id=friendship_request_id)
-            name = request.query_params.get('name')
+            name = request.query_params.get('name', None)
+            print("Name:", name)
             if not name:
                 return JsonResponse([], safe=False)
 
             result = User.objects.filter(Q(last_name__icontains=name) | 
                             Q(first_name__icontains=name))
-            resp = UserSearchSerializer(result, many=True)
-            return JsonResponse(resp.data, safe=False)
+            print("Result", result)
+            friends = Friend.objects.filter(to_user_id=request.user.uuid)
+            print("Friends", friends)
+
+            out = []
+            # if not result:
+            #     for f in friends:
+            #         r = User.objects.get(uuid=f.to_user_id)
+            #         d = {
+            #                 "uuid": r.uuid,
+            #                 "first_name": r.first_name,
+            #                 "last_name": r.last_name,
+            #                 "email": r.email,
+            #                 "image_url": r.image,
+            #                 "is_friend": True
+            #             }
+            #         out.append(d)
+            #     return JsonResponse(out, safe=False)
+                
+            for r in result:
+                d = {
+                        "uuid": r.uuid,
+                        "first_name": r.first_name,
+                        "last_name": r.last_name,
+                        "email": r.email,
+                        "image_url": r.image,
+                        "is_friend": False
+                    }
+                for f in friends:
+                    if r.uuid == f.to_user_id:
+                        d["is_friend"] = True
+
+                out.append(d)
+            # resp = UserSearchSerializer(result, many=True)
+            # return JsonResponse(resp.data, safe=False)
+            return JsonResponse(out, safe=False)
+
         except Exception as e:
             return JsonResponse({"error": str(e)})
 
