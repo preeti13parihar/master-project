@@ -1,7 +1,7 @@
-from reviews.serializers import ImageSerialzer
+from reviews.serializers import ImageSerialzer, ProfileImageSerialzer
 import json
 from .utils import upload_image
-from .models import Images
+from .models import Images, ProfileImage
 from django.forms.models import model_to_dict
 from rest_framework.views import APIView
 from rest_framework import status, generics, mixins
@@ -19,16 +19,37 @@ class ImageUploader(mixins.ListModelMixin, APIView):
 
     def post(self, request):
         try:
-            file_serialzer = ImageSerialzer(data=request.data)
-            
+            # folder = "reviews"
             if not request.FILES.get("file", None):
                 return Response({"msg": "Invalid key for file upload, expecting 'file'"}, status=status.HTTP_400_BAD_REQUEST)
 
-            url = upload_image(request.FILES['file'])
+            # IsProfileImage = False
+            # if ("profile" in request.POST) and request.POST["profile"] == "true":
+            #     IsProfileImage = True
+            #     folder = "profiles"
+            #     file_serialzer = ProfileImageSerialzer(data=request.data)
+            # else:
+            #     file_serialzer = ImageSerialzer(data=request.data)
+
+            # print(file_serialzer)
+            file_serialzer = ProfileImageSerialzer(data=request.data)
+            uuid = str(request.user.uuid)
+            url = upload_image(request.FILES['file'], "profiles/" + uuid)
 
             if file_serialzer.is_valid():
+            #     print(file_serialzer["description"].value)
+
                 desc = file_serialzer["description"].value
-                image = Images.objects.create(user_id=request.user.uuid, url=url, description=desc)
+            #     if IsProfileImage:
+            #         image = ProfileImage.objects.create(user_id=request.user, url=url, description=desc)
+            #     else:
+            #         if "review_id" not in file_serialzer.data:
+            #             return Response({"msg": "Please provide review_id to upload review images."}, status=status.HTTP_400_BAD_REQUEST)
+
+            #         review_id = file_serialzer["review_id"].value
+            #         image = Images.objects.create(review_id=review_id, url=url, description=desc)
+
+                image = ProfileImage.objects.create(user_id=request.user, url=url, description=desc)
                 image.save()
                 obj = model_to_dict(image)
                 return Response(obj, status=status.HTTP_201_CREATED)
@@ -36,6 +57,7 @@ class ImageUploader(mixins.ListModelMixin, APIView):
                 return Response(file_serialzer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
+            print(e)
             raise Exception("Error while uploading image: " + str(e))    
     
 

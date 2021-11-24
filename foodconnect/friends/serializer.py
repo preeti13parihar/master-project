@@ -19,22 +19,23 @@ class FriendSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField(read_only=True)
     
     def get_first_name(self, obj):
-        user = User.objects.filter(uuid=obj.from_user.uuid).first()
+        user = User.objects.get(uuid=obj.to_user.uuid)
         return user.first_name
 
     def get_last_name(self, obj):
-        user = User.objects.filter(uuid=obj.from_user.uuid).first()
+        user = User.objects.get(uuid=obj.to_user.uuid)
         return user.last_name
 
     def get_image_url(self, obj):
-        user = User.objects.filter(uuid=obj.from_user.uuid).first()
+        user = User.objects.get(uuid=obj.to_user.uuid)
         return user.image
 
 
 class FriendRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.FriendshipRequest
-        fields = ("to_user", "message", "first_name", "last_name", "image_url")
+        fields = "__all__"
+        # fields = ("to_user", "message", "first_name", "last_name", "image_url")
 
     first_name = serializers.SerializerMethodField(read_only=True)
     last_name = serializers.SerializerMethodField(read_only=True)

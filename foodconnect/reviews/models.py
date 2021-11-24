@@ -23,6 +23,13 @@ class Images(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
+class ProfileImage(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    url = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
 class ReviewImages(models.Model):
     review_id = models.ForeignKey(Reviews, on_delete=models.CASCADE)
     images_url = models.CharField(max_length=200)
