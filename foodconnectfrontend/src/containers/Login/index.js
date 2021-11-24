@@ -1,15 +1,13 @@
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { login } from "../../services/apis";
 import "./login.css";
 
-
 export default function Login() {
-
   const [formData, setFormData] = useState({});
   const [loading, setloading] = useState(false);
   const history = useHistory();
@@ -24,22 +22,22 @@ export default function Login() {
     e.preventDefault();
     setloading(true);
 
-    const encodedString = Buffer.from(`${formData.email}:${formData.password}`).toString('base64');
-    login(encodedString).then(response => {
-      console.log(response, 'success response');
-      if (response?.headers?.http_accesstoken) {
-        const { http_accesstoken, http_refreshtoken } = response.headers;
-        localStorage.setItem('AccessToken', http_accesstoken);
-        localStorage.setItem('RefreshToken', http_refreshtoken);
-      }
-      setloading(false);
-      history.push('/Profile');
-    }).catch(err => {
-      console.log('err,', err);
-      setloading(false);
-      toast.error('Incorrect username or password.');
-
-    });
+    const encodedString = Buffer.from(
+      `${formData.email}:${formData.password}`
+    ).toString("base64");
+    login(encodedString)
+      .then((response) => {
+        console.log(response, "success response");
+        localStorage.setItem("AccessToken", response.data.access_token);
+        localStorage.setItem("RefreshToken", response.data.refresh_token);
+        setloading(false);
+        history.push("/Profile");
+      })
+      .catch((err) => {
+        console.log("err,", err);
+        setloading(false);
+        toast.error("Incorrect username or password.");
+      });
   }
 
   return (
