@@ -40,6 +40,7 @@ class FriendViewSet(viewsets.ModelViewSet):
     def add_friend(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
+            print(serializer)
             to_user = user_model.objects.get(uuid=serializer.data["to_user"])
             from_user = request.user
             try:
@@ -71,8 +72,9 @@ class FriendViewSet(viewsets.ModelViewSet):
             # frnd_request = get_object_or_404(FriendshipRequest, id=friendship_request_id)
             print(friendship_request_id)
             frnd_request = FriendshipRequest.objects.get(id=friendship_request_id)
-
-            return JsonResponse({"Rejected": True})
+            print(frnd_request)
+            out = frnd_request.reject()
+            return JsonResponse({"Rejected": out})
             
         except Exception as e:
             if str(e) == "FriendshipRequest matching query does not exist.":
@@ -145,9 +147,8 @@ class FriendViewSet(viewsets.ModelViewSet):
             if not user_id:
                 user_id = request.user.uuid
 
-            queryset = Friend.objects.filter(from_user_id=user_id)
-
-            serializer = FriendSerializer(queryset, many=True)
+            friends = Friend.objects.filter(from_user_id=user_id)
+            serializer = FriendSerializer(friends, many=True)
             return Response(serializer.data)
         except Exception as e:
             return JsonResponse({"error": str(e)})
