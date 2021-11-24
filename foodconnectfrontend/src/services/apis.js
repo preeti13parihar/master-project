@@ -101,7 +101,7 @@ export const sendFriendRequest = async (uuid) => {
 };
 
 export const cancelFriendRequest = async (id) => {
-  return axios.get(`/friends/cancel/${id}`);
+  return axios.get(`/friends/cancel/${id}/`);
 };
 
 export const acceptFriendRequest = async (id) => {

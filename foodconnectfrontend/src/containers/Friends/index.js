@@ -117,7 +117,7 @@ export default function Friends() {
                       <Spinner animation="grow" />
                       :
                       <div className="friend-cards">
-                        <FriendCard />
+                        {/* <FriendCard /> */}
                         {
                           friendsList?.map(friend => <FriendCard friend={friend} />)
                         }
