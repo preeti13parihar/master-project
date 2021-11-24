@@ -1,0 +1,295 @@
+.restaurants {
+  padding-top: 110px;
+  padding-bottom: 30px;
+}
+.restaurants h2 {
+  font-family: Lato, sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #663f1a;
+}
+.restaurants .restaurants-bottom {
+  padding: 15px 0px 30px 0px;
+  margin-top: 0px;
+}
+.restaurants .restaurants-bottom h3 {
+  font-family: Lato, sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #663f1a;
+}
+.restaurants .restaurants-bottom .cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+/* Restaurants Detail Page */
+.restaurants-detail {
+  padding: 120px 0px 40px;
+}
+.restaurants-detail .detail-image {
+  width: 100%;
+  height: 400px;
+}
+.restaurants-detail .detail-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6rem;
+}
+.restaurants-detail .detail-bottom h3 {
+  line-height: 1.2;
+  color: rgb(28, 28, 28);
+  font-weight: 500;
+  font-size: 2.2rem;
+  margin-top: 20px;
+}
+.restaurants-detail .detail-bottom p {
+  font-size: 1.2rem;
+  color: rgb(105, 105, 105);
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+.restaurants-detail .detail-bottom p i {
+  margin-right: 10px;
+}
+.restaurants-detail .detail-bottom a {
+  font-size: 1.2rem;
+  color: rgb(105, 105, 105);
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.restaurants-detail .detail-bottom a i {
+  margin-right: 10px;
+}
+.restaurants-detail .detail-bottom .buttons {
+  margin-top: 15px;
+}
+.restaurants-detail .detail-bottom .buttons button.review {
+  line-height: 36px;
+  margin-top: 0px;
+  margin-left: 0px;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  background: rgb(237, 90, 107);
+  border-color: rgb(237, 90, 107);
+  border-width: 0px;
+  border-style: solid;
+  border-radius: 0.6rem;
+  padding: 0px 1.6rem;
+  transition: 0.3s ease-in-out;
+  outline: none !important;
+  cursor: pointer;
+}
+.restaurants-detail .detail-bottom .buttons button.review:hover {
+  background: rgba(237, 90, 107, 0.9);
+}
+
+.restaurants-detail .detail-bottom .buttons button.review i {
+  top: 0;
+}
+.detail-bottom .buttons button.review i {
+  margin-right: 8px;
+}
+.restaurants-detail .detail-bottom .buttons button {
+  line-height: 36px;
+  margin-top: 0px;
+  margin-left: 15px;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgb(28, 28, 28);
+  opacity: 1;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(156, 156, 156);
+  border-radius: 0.6rem;
+  padding: 0px 1.6rem;
+  transition: 0.3s ease-in-out;
+  outline: none !important;
+  cursor: pointer;
+}
+.restaurants-detail .detail-bottom .buttons button:hover {
+  background-color: rgba(156, 156, 156, 0.16);
+}
+.restaurants-detail .detail-bottom .buttons button i {
+  margin-right: 8px;
+}
+.nav-tabs .nav-link {
+  color: #663f1a;
+}
+.restaurants-detail .nav-tabs .nav-item.show .nav-link,
+.restaurants-detail .nav-tabs .nav-link.active {
+  color: rgb(237, 90, 107);
+  background-color: #fff;
+  border-color: #fff #fff rgb(237, 90, 107);
+  border-bottom: 4px solid rgb(237, 90, 107);
+}
+.restaurants-detail .nav-tabs .nav-link:focus {
+  border-color: #fff #fff rgb(237, 90, 107);
+}
+.restaurants-detail .nav-tabs .nav-link:hover {
+  border-color: #fff #fff #dee2e6;
+}
+.restaurants-detail .review-text span {
+  color: orange;
+  font-size: 15px;
+}
+.restaurants-detail .review-text span i {
+  margin-right: 6px;
+}
+.restaurants-detail .tab-content {
+  margin-top: 25px;
+}
+.restaurants-detail .review-head {
+  display: flex;
+  align-items: center;
+}
+.restaurants-detail .review-head .review-image {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.restaurants-detail .review-head .review-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.restaurants-detail .review-text {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.restaurants-detail .review-text h4 {
+  font-size: 20px;
+  line-height: 26px;
+  color: #663f1a;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.restaurants-detail .review-content {
+  margin-top: 10px;
+}
+.restaurants-detail .review-content p {
+  font-size: 16px;
+  color: #a8a8a8;
+}
+.restaurants-detail .review-content .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+.review-content .gallery .gallery-image {
+  width: 19%;
+  margin-right: 12px;
+  height: 150px;
+  margin-bottom: 10px;
+  border-radius: 0.6rem;
+  position: relative;
+}
+.review-content .gallery .gallery-image::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6rem;
+}
+.review-content .gallery .gallery-image:nth-child(5n) {
+  margin-right: 0;
+}
+.review-content .gallery .gallery-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.6rem;
+  object-fit: cover;
+}
+.modal .review-form label {
+  margin-bottom: 0;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+.modal .review-form textarea {
+  margin-top: 15px;
+
+  height: 90px;
+  padding: 10px 10px;
+  resize: none;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 16px;
+  line-height: 22px;
+}
+.modal .review-form textarea::placeholder {
+  color: #333;
+  font-size: 16px;
+  line-height: 22px;
+}
+.modal .review-form textarea:focus {
+  outline: none;
+}
+.modal .modal-header {
+  padding-bottom: 0px;
+  border: none;
+}
+.modal .modal-footer {
+  border: none;
+}
+#selectedFiles img {
+  max-width: 200px;
+  max-height: 200px;
+  float: left;
+  margin-bottom: 10px;
+}
+.modal .btn-primary {
+  background-color: rgb(237, 90, 107);
+  border: 1px solid transparent;
+}
+.modal .btn-add {
+  background-color: rgba(32, 188, 32, 1);
+  border: 1px solid transparent;
+}
+.modal .btn-add:hover {
+  background-color: rgba(32, 188, 32, 0.9) !important;
+  border-color: rgba(32, 188, 32, 0.9) !important;
+}
+.modal .btn-primary:hover {
+  background-color: rgba(237, 90, 107, 0.9);
+  border-color: rgba(237, 90, 107, 0.9);
+}
+.btn-primary.btn-add.focus,
+.btn-primary.btn-add:focus {
+  color: #fff;
+  background-color: rgba(32, 188, 32, 1);
+  border-color: rgba(32, 188, 32, 1);
+  box-shadow: none;
+}
+.btn-primary.focus,
+.btn-primary:focus {
+  color: #fff;
+  background-color: rgb(237, 90, 107);
+  border-color: rgb(237, 90, 107);
+  box-shadow: none;
+}
+.modal .modal-body {
+  position: relative;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+@media (min-width: 991px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 650px !important;
+  }
+}
