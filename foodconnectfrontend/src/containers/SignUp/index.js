@@ -77,9 +77,9 @@ export default function SignUp() {
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="**********" required="" onChange={handleInputChange} />
                 <label htmlFor="firstname">First Name</label>
-                <input type="text" id="firstname" name="firstname" placeholder="Foo" required="" onChange={handleInputChange} />
+                <input type="text" id="firstname" name="firstname" placeholder="First Name" required="" onChange={handleInputChange} />
                 <label htmlFor="lastname">Last Name</label>
-                <input type="text" id="lastname" name="lastname" placeholder="Bar" required="" onChange={handleInputChange} />
+                <input type="text" id="lastname" name="lastname" placeholder="Last Name" required="" onChange={handleInputChange} />
                 <button disabled={loading} className="btn btn-lg btn-primary btn-block btn-homepage" type="submit"><span className="fa fa-user-plus" aria-hidden="true"></span> Signup</button>
               </form>
               <p>Already have an account? <Link to="/login">Login here</Link></p>
