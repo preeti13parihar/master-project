@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@react-google-maps/api": "^2.7.0",
     "aos": "^2.3.4",
     "axios": "^0.22.0",
     "bootstrap": "^4.6.0",
     "buffer": "^6.0.3",
+    "google-map-react": "^2.1.10",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
+import Card from "../../components/Cards";
 import Footer from "../../components/footer";
 import HeaderDashboard from "../../components/header/header";
+import MapComponent from "../../components/Map/index2";
 import ProfileCards from "../../components/ProfileCards/index";
 import Image from "../../images/default-profile.png";
-import { getAllBreadcrumbs, getProfile } from "../../services/apis";
+import { getAllBreadcrumbs, getProfile, getRecommendations } from "../../services/apis";
 import "./profile.css";
 
 export default function Profile() {
@@ -14,9 +16,9 @@ export default function Profile() {
   const [trailCount, settrailCount] = useState(0);
   const [friendCount, setfriendCount] = useState(0);
   const [trails, settrails] = useState([]);
+  const [recommendations, setrecommendations] = useState([]);
 
   useEffect(() => {
-    showMap();
     getSetAllBreadcrumbs();
     setloading(true);
     getProfile().then(response => {
@@ -28,9 +30,31 @@ export default function Profile() {
     }).catch(err => {
       console.log(err, 'err');
       setloading(false);
+    });
+
+
+    // Get Recommendations
+    setloading(true);
+    if (navigator?.geolocation) {
+      navigator?.geolocation?.getCurrentPosition((pst) => {
+        getRecommendations(
+          // pst?.coords || 
+          { longitude: -73.935242, latitude: 40.730610 }).then(response => {
+            if (response?.data) {
+              let dataList = response.data?.restaurants?.businesses;
+              if (dataList.length > 5) {
+                dataList.length = 5;
+              }
+              setrecommendations(dataList);
+            }
+          }).catch(err => {
+            console.log(err, 'err');
+          });
+      });
     }
-    );
+
   }, []);
+
 
 
   function getSetAllBreadcrumbs() {
@@ -44,33 +68,6 @@ export default function Profile() {
       console.log(err, 'err');
     }
     );
-  }
-
-
-  function showMap() {
-    if (window?.navigator?.geolocation) {
-      window?.navigator?.geolocation.getCurrentPosition(function (p) {
-        var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-        var mapOptions = {
-          center: LatLng,
-          zoom: 13,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-        var marker = new google.maps.Marker({
-          position: LatLng,
-          map: map,
-          title: "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: " + p.coords.latitude + "<br />Longitude: " + p.coords.longitude
-        });
-        google.maps.event.addListener(marker, "click", function (e) {
-          var infoWindow = new google.maps.InfoWindow();
-          infoWindow.setContent(marker.title);
-          infoWindow.open(map, marker);
-        });
-      });
-    } else {
-      alert('Geo Location feature is not supported in this browser.');
-    }
   }
 
   return (
@@ -116,16 +113,9 @@ export default function Profile() {
               <div id="dvMap">
 
               </div>
-              {/* <div className="gmap_canvas">
-                <iframe
-                  id="gmap_canvas"
-                  src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  frameborder="0"
-                  scrolling="no"
-                  marginheight="0"
-                  marginwidth="0"
-                ></iframe>
-              </div> */}
+              <MapComponent
+                trails={trails}
+              />
             </div>
           </div>
           <div className="trail">
@@ -134,6 +124,16 @@ export default function Profile() {
               {
                 trails?.map(trail => <ProfileCards data={trail} />)
               }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="restaurants">
+        <div className="container">
+          <h2>Top 5 Restaurants</h2>
+          <div className="restaurants-bottom">
+            <div className="cards">
+              {recommendations?.map(restaurant => <Card restaurant={restaurant} />)}
             </div>
           </div>
         </div>

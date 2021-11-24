@@ -118,6 +118,9 @@ export const getRestaurantsList = ({ latitude, longitude }) => {
 };
 
 
+export const getRecommendations = ({ latitude, longitude }) => {
+  return axios.get(`/trail/restaurants?long=${longitude}&lat=${latitude}`);
+};
 
 
 
@@ -139,19 +142,3 @@ function getFormData(body) {
   return formData;
 }
 
-
-async function getLocation() {
-  let position = null;
-  if (navigator?.geolocation) {
-    await navigator?.geolocation?.getCurrentPosition((pst) => {
-      position = {
-        latitude: pst.coords.latitude,
-        longitude: pst.coords.longitude
-      };
-      console.log(pst.coords, 'pst pst', position);
-
-    }, (err) => console.log(err, 'err')
-    );
-  }
-  return position;
-}

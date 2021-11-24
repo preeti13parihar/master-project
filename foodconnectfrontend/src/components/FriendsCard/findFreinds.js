@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import Image from "../../images/default-profile.png";
 import { acceptFriendRequest, cancelFriendRequest, rejectFriendRequest, sendFriendRequest } from "../../services/apis";
 import "./friendcard.css";
@@ -13,6 +14,8 @@ export default function FindFreinds({ friend, type = 'new', filterSearchedFriend
             if (response?.data) {
                 setbtnLoading(false);
                 filterSearchedFriends(friend?.uuid);
+                toast.success('Request Sent');
+
             }
         }).catch(err => {
             console.log(err, 'err');
@@ -27,6 +30,8 @@ export default function FindFreinds({ friend, type = 'new', filterSearchedFriend
             if (response?.data) {
                 setbtnLoading(false);
                 filterFriendRequests(friend?.id);
+                toast.success('Request Canceled');
+
             }
         }).catch(err => {
             console.log(err, 'err');
@@ -42,6 +47,7 @@ export default function FindFreinds({ friend, type = 'new', filterSearchedFriend
             if (response?.data) {
                 setbtnLoading(false);
                 filterFriendRequests(friend?.id);
+                toast.success('Request Accepted');
             }
         }).catch(err => {
             console.log(err, 'err');
@@ -53,10 +59,11 @@ export default function FindFreinds({ friend, type = 'new', filterSearchedFriend
 
     const rejectFrndRequest = () => {
         setbtnLoading(true);
-        rejectFriendRequest(friend?.from_user).then(response => {
+        rejectFriendRequest(friend?.id).then(response => {
             if (response?.data) {
                 setbtnLoading(false);
-                filterFriendRequests(friend?.from_user, 'from_user');
+                filterFriendRequests(friend?.id, 'id');
+                toast.success('Request Rejected');
             }
         }).catch(err => {
             console.log(err, 'err');

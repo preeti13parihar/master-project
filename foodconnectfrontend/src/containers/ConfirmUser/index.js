@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { confirmEmail } from "../../services/apis";
-import './index.css';
+import './style.css';
 
 const initForm = {
   passcode: null
@@ -70,7 +70,7 @@ export default function SignUp(props) {
             <div className="login-head">
               <h2>Confirm Email</h2>
             </div>
-            <div className="confirm-form">
+            <div className="login-form">
               <form onSubmit={handleSignUp}>
                 <label htmlFor="email">Enter passcode </label>
                 <input type="number" id="passcode" name="passcode" required onChange={handleInputChange} />
