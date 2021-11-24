@@ -1,23 +1,50 @@
-import React from 'react'
-import FastfoodIcon from "@material-ui/icons/Fastfood";
-import { Nav, Navbar, Button, Form, FormControl } from "react-bootstrap";
+import React from "react";
+import { Link } from "react-router-dom";
+import Logo from "../../images/logo.png";
+import Dropdown from "../Dropdown/index";
+import "./header.css";
 
-function Header() {
-    return (
-      <div>
-        <>
-          <Navbar bg="primary" variant="dark">
-            <Navbar.Brand href="#home">FoodConnect</Navbar.Brand>
-            <Nav className="mr-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#restaurants">Restaurants</Nav.Link>
-              <Nav.Link href="#friends">Friends</Nav.Link>
-              <Nav.Link href="#profile">Profile</Nav.Link>
-            </Nav>
-          </Navbar>
-        </>
-      </div>
-    );
+export default function HeaderDashboard({ handleFilter }) {
+  return (
+    <>
+
+      <header className="header-dashboard">
+        <div className="logo">
+          <Link to="/">
+            <img src={Logo}></img>
+          </Link>
+        </div>
+        <div className="nav">
+          <ul>
+            <li>
+              <Link to="/Profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/Friends">Freinds</Link>
+            </li>
+            <li>
+              <Link to="/restaurants">Restaurnts</Link>
+            </li>
+
+            {
+              handleFilter &&
+              <li className="search"><input
+                type="text"
+                placeholder="Find restaurants by name or address"
+                required=""
+                autoFocus=""
+                onChange={handleFilter}
+              />
+                <button>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </li>
+            }
+
+          </ul>
+          <Dropdown />
+        </div>
+      </header>
+    </>
+  );
 }
-
-export default Header

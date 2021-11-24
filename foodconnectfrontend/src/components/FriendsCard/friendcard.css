@@ -1,0 +1,72 @@
+.friend-list h4 {
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #6aa4b0;
+  padding: 20px 20px;
+  letter-spacing: 1px;
+  border-radius: 0.6rem 0.6rem 0 0;
+}
+.friend-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 12px;
+}
+.friend-list a {
+  width: 100%;
+}
+.friend-list {
+  display: flex;
+  width: 53%;
+  padding: 10px;
+  box-shadow: 0px 3px 10px rgb(0 0 0 / 16%);
+  margin-bottom: 10px;
+  border-radius: 0.6rem;
+  margin-right: 31px;
+  margin-left: 1px;
+  align-items: center;
+}
+.friend-list button{
+  border-radius: 50%;
+  border: 1px solid #333;
+  margin-left: 60px;
+  margin-top: 5px;
+}
+.friend-list button i{
+  color:#333;
+}
+.friend-list:nth-child(2n) {
+  margin-right: 0px;
+}
+.friend-list .friend-image {
+  width: 100px;
+  height: 90px;
+  margin-right: 15px;
+}
+.friend-list .friend-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.6rem;
+}
+.friend-list h5 {
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 0px;
+  color: #333;
+}
+.friend-list p {
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 5px;
+  margin-top: 7px;
+  color: #c3c3c3;
+}
+.friend-list p i {
+  margin-right: 7px;
+}
+.friend-list a {
+  font-size: 16px;
+  line-height: 22px;
+  color: #c3c3c3;
+}

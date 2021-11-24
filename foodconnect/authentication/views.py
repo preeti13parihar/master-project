@@ -100,8 +100,8 @@ def initiate_auth(request):
             refresh_token = result["AuthenticationResult"]["RefreshToken"]
             response = JsonResponse({
                 "msg": "Welcome " + userid, 
-                # "access_token": access_token,
-                # "refresh_token": refresh_token
+                "access_token": access_token,
+                "refresh_token": refresh_token
             })
             # response = redirect(to="homepage", permanent=True)
             response["HTTP_ACCESSTOKEN"] = access_token

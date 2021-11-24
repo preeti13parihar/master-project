@@ -2,6 +2,7 @@ from django.conf.urls import url
 from .views import FriendsList, FriendViewSet
 from authentication.views import UserSearchViewSet
 
+from .recommendation import FriendRecommendationViewSet
 
 add_friend = FriendViewSet.as_view({
     'post': 'add_friend'
@@ -35,6 +36,10 @@ remove_friend = FriendViewSet.as_view({
     'get': 'remove_friend'
 })
 
+get_friend_recommendation = FriendRecommendationViewSet.as_view({
+    'get': 'get_friend_recommendation'
+})
+
 urlpatterns = [
     url(r'^list/$', list_friends, name='list_friends'),
     url(r'^list/(?P<user_id>\w+)/$', list_friends, name='list_friends'),
@@ -46,5 +51,6 @@ urlpatterns = [
     url(r'requests/$', list_requests, name='list_requests'),
     url(r'requests/sent/$', list_sent_requests, name='list_sent_requests'),
     url(r'^search/$', UserSearchViewSet.as_view({'get':'search_user'}), name='search'),
+    url(r'suggestFriends', get_friend_recommendation, name='get_friend_recommendation')
 
 ]
