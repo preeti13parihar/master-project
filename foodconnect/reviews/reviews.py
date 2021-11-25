@@ -5,9 +5,8 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 
 from reviews.models import Reviews, ReviewImages
-from reviews.serializers import ImageSerialzer, FileSerializer
+from reviews.serializers import FileSerializer
 from reviews.utils import upload_image
-from reviews.views import ImageUploader
 
 try:
     from django.contrib.auth import get_user_model
@@ -34,9 +33,9 @@ class ReviewViewSet(viewsets.ModelViewSet):
             serializer_class = FileSerializer(data=body)
             if 'file' in request.FILES and serializer_class.is_valid():
                 files = request.FILES.getlist('file')
+                
                 for f in files:
-                    url = upload_image(f)
-                    print(url)
+                    url = upload_image(f, "reviews/" + str(review.review_id))
                     reviewImages = ReviewImages.objects.create(review_id=review, images_url=url)
                     reviewImages.save()
 
