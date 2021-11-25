@@ -81,6 +81,7 @@ export default function RestaurantsDetailPage() {
   const [modalShow, setModalShow] = useState(false);
   const [restaurantDetail, setRestaurantDetail] = useState(null);
   const [reviews, setreviews] = useState([]);
+  const [images, setimages] = useState([]);
   const [loading, setloading] = useState(false);
   const [friendsReviews, setfriendsReviews] = useState([]);
   const [hasUserVisited, setHaseUserVisted] = useState(true);
@@ -108,6 +109,7 @@ export default function RestaurantsDetailPage() {
       if (response?.data && response?.data?.success) {
         setreviews(response?.data?.review);
         setuserName(response?.data?.userName);
+        setimages(response?.data?.images);
         setloading(false);
       }
     }).catch(err => {
@@ -268,29 +270,39 @@ export default function RestaurantsDetailPage() {
       <Footer />
     </>
   );
+
+  function ReviewItem({ review, getRating, userName }) {
+    return (
+      <>
+        <div className="review-head">
+          <div className="review-image">
+            <img src={ProfileImage} alt="profile" />
+          </div>
+          <div className="review-text">
+            <h4>{userName || ''}</h4>
+            <span>
+              {getRating(review?.rating)} {review?.rating}
+            </span>
+          </div>
+        </div>
+        <div className="review-content">
+          <p>
+            {review?.review}
+          </p>
+          <div className="gallery">
+            {
+              images?.map(im => <div className="gallery-image">
+                <img src={im.images_url} alt="" />
+              </div>)
+            }
+
+          </div>
+        </div>
+      </>
+    );
+  }
+
 }
 
 
 
-function ReviewItem({ review, getRating, userName }) {
-  return (
-    <>
-      <div className="review-head">
-        <div className="review-image">
-          <img src={ProfileImage} alt="profile" />
-        </div>
-        <div className="review-text">
-          <h4>{userName || ''}</h4>
-          <span>
-            {getRating(review?.rating)} {review?.rating}
-          </span>
-        </div>
-      </div>
-      <div className="review-content">
-        <p>
-          {review?.review}
-        </p>
-      </div>
-    </>
-  );
-}

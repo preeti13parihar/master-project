@@ -43,6 +43,11 @@ export const getFriendsList = async () => {
 
 
 
+
+export const getSuggestedFriends = async () => {
+  return axios.get(`/friends/suggestFriends`);
+};
+
 export const getReviews = async (restaurantId) => {
   return axios.get(`/reviews/getReview?restaurant_id=${restaurantId}`);
 };
@@ -122,14 +127,20 @@ export const getRecommendations = ({ latitude, longitude }) => {
   return axios.get(`/trail/restaurants?long=${longitude}&lat=${latitude}`);
 };
 
+export const updateProfilePic = (formData) => {
+  return axios.post(`/reviews/upload`, formData);
+};
+
 
 
 function getFormData(body) {
   let formData = new FormData();
   for (let [key, value] of Object.entries(body)) {
     if (key === 'files') {
+      console.log(key, '=>', value);
+
       for (let file of value) {
-        formData.append(key, file);
+        formData.append('file', file.file);
       }
     } else {
       if (typeof value === 'object' && key !== 'file') {
