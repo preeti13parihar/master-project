@@ -38,12 +38,15 @@ class FriendViewSet(viewsets.ModelViewSet):
 
     @action(methods=["POST"], detail=True)
     def add_friend(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        try:
+            to_user = get_object_or_404(user_model, uuid=request.data["to_user"])
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
+
+        serializer = self.get_serializer(data=request.data) #, partial=True, context={'request': request})
         if serializer.is_valid():
-            print(serializer)
-            to_user = user_model.objects.get(uuid=serializer.data["to_user"])
-            from_user = request.user
             try:
+                from_user = request.user
                 Friend.objects.add_friend(from_user, to_user)
             except Exception as e: # AlreadyExistsError as e:
                 return JsonResponse({"msg": str(e)}, status=400)
@@ -70,11 +73,9 @@ class FriendViewSet(viewsets.ModelViewSet):
     def reject_request(self, request, friendship_request_id=None):
         try:
             # frnd_request = get_object_or_404(FriendshipRequest, id=friendship_request_id)
-            print(friendship_request_id)
             frnd_request = FriendshipRequest.objects.get(id=friendship_request_id)
-            print(frnd_request)
-            out = frnd_request.reject()
-            return JsonResponse({"Rejected": out})
+            out = frnd_request.delete()
+            return JsonResponse({"Rejected": True})
             
         except Exception as e:
             if str(e) == "FriendshipRequest matching query does not exist.":
