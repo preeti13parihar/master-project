@@ -27,7 +27,7 @@ export default function Profile() {
     if (navigator?.geolocation) {
       navigator?.geolocation?.getCurrentPosition((pst) => {
         getRecommendations(
-          // pst?.coords || 
+          pst?.coords || 
           { longitude: -73.935242, latitude: 40.730610 }).then(response => {
             if (response?.data) {
               let dataList = response.data?.restaurants?.businesses;
