@@ -50,12 +50,15 @@ class ReviewViewSet(viewsets.ModelViewSet):
             user_id = request.GET['uuid'] if 'uuid' in request.GET else request.user.uuid
             restaurant_id = request.GET['restaurant_id']
             reviews = Reviews.objects.filter(restaurant_id=restaurant_id, user_id=user_id).values()
-            reviewIDS = Reviews.objects.filter(restaurant_id=restaurant_id, user_id=user_id).values_list('review_id', flat=True)
+            # reviewIDS = Reviews.objects.filter(restaurant_id=restaurant_id, user_id=user_id).values_list('review_id', flat=True)
             user_info = user_model.objects.get(uuid=user_id)
 
             if reviews:
-                images = ReviewImages.objects.filter(review_id__in=reviewIDS).values('images_url')
-                success_response = {'success': True, 'images': list(images), 'review': list(reviews), 'userName': user_info.first_name+' '+user_info.last_name}
+                for review in list(reviews):
+                    images=[]
+                    images = ReviewImages.objects.filter(review_id=review['review_id']).values('images_url')
+                    review['images']=list(images)
+                success_response = {'success': True, 'review': list(reviews), 'userName': user_info.first_name+' '+user_info.last_name}
             else:
                 success_response = {'success': True, 'images': list(), 'review': list(), 'userName':user_info.first_name+' '+user_info.last_name }
             return JsonResponse(success_response)
