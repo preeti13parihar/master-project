@@ -10,6 +10,14 @@ from django.http.response import JsonResponse
 from rest_framework.response import  Response
 from rest_framework.parsers import MultiPartParser, FormParser
 
+try:
+    from django.contrib.auth import get_user_model
+
+    user_model = get_user_model()
+except ImportError:
+    from django.contrib.auth.models import User
+
+    user_model = User
 
 class ImageUploader(mixins.ListModelMixin, APIView):
     parser_classes = (MultiPartParser, FormParser)
@@ -51,6 +59,9 @@ class ImageUploader(mixins.ListModelMixin, APIView):
 
                 image = ProfileImage.objects.create(user_id=request.user, url=url, description=desc)
                 image.save()
+                user = user_model.objects.get(uuid=uuid)
+                user.image = url
+                user.save()
                 obj = model_to_dict(image)
                 return Response(obj, status=status.HTTP_201_CREATED)
             else:
