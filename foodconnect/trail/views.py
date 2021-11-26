@@ -92,16 +92,15 @@ class TrailViewSet(viewsets.ModelViewSet):
                 user_id = request.user.uuid
                 restaurant = request.GET['restaurant_id']
                 friend_IDS = Friend.objects.filter(from_user_id=user_id).values_list('to_user_id')
-                friend_trails = Trail.objects.filter(user_id__in=friend_IDS, restaurant_id=restaurant).values_list('user_id')
                 users = user_model.objects.filter(uuid__in=friend_IDS).values()
 
                 for friend in list(users):
-                    print(friend)
-                    review = Reviews.objects.filter(restaurant_id=restaurant, user_id=friend['uuid']).values()
-                    friend['reviews']=list(review)
-                    reviewIDS = Reviews.objects.filter(restaurant_id=restaurant, user_id=friend['uuid']).values_list('review_id', flat=True)
-                    images = ReviewImages.objects.filter(review_id__in=reviewIDS).values_list('images_url',flat=True)
-                    friend['reviewImages']=list(images)
+                    reviews = Reviews.objects.filter(restaurant_id=restaurant, user_id=friend['uuid']).values()
+                    for review in list(reviews):
+                        images=[]
+                        images = ReviewImages.objects.filter(review_id=review['review_id']).values('images_url')
+                        review['images']=list(images)
+                    friend['reviews']=list(reviews)
                 
                 user_trail = Trail.objects.filter(user_id=user_id, restaurant_id=restaurant).values()
                 user_has_visited = False
