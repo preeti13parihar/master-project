@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from '../../components/footer/index';
 import Header from "../../components/header/index";
-import Image from '../../images/foodConnect2.jpeg';
+import Image from '../../images/FoodConnect2.jpeg';
 import './home.css';
 
 export default function Home() {
