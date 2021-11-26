@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Footer from '../../components/footer/index';
 import Header from "../../components/header/index";
-import Image from '../../images/banner.jpg';
+import Image from '../../images/foodConnect2.jpeg';
 import './home.css';
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
       <main className="home">
         <section className="banner" style={{ backgroundImage: 'url(' + Image + ')' }}>
           <div className="container">
-            <h1>Breadcrumbs</h1>
+            <h1>FoodConnect</h1>
             <p>The ultimate social media network for foodies.
             Remember where you've been and what you've eaten!
           </p>
