@@ -30,7 +30,7 @@ export default function HeaderDashboard({ handleFilter }) {
               handleFilter &&
               <li className="search"><input
                 type="text"
-                placeholder="Find restaurants by name or address"
+                placeholder="Find restaurants by name"
                 required=""
                 autoFocus=""
                 onChange={handleFilter}
