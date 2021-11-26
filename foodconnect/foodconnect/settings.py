@@ -4,12 +4,8 @@ import json
 from urllib import request
 from pathlib import Path
 from datetime import timedelta
-import pymysql
-import numpy as np
-import pandas as pd
 import pickle
 import scipy
-pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
