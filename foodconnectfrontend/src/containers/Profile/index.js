@@ -152,7 +152,7 @@ export default function Profile() {
       </div>
       <div className="restaurants">
         <div className="container">
-          <h2>Top 5 Restaurants</h2>
+          <h2>Restaurant Recommendation For You</h2>
           <div className="restaurants-bottom">
             <div className="cards">
               {recommendations?.map(restaurant => <Card restaurant={restaurant} />)}

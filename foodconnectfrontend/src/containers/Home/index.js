@@ -32,7 +32,7 @@ export default function Home() {
                   <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
                 </span>
                 <h3>Track Restaurnts</h3>
-                <p>Add a restaurant visit, leaving a trail of breadcrumbs for your restaurant history.</p>
+                <p>Add a restaurant visit, leaving a trail for your restaurant history.</p>
               </div>
               <div className="box">
                 <span class="fa-stack fa-3x features-icon">
