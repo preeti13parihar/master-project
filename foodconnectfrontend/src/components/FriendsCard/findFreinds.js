@@ -76,7 +76,10 @@ export default function FindFreinds({ friend, type = 'new', filterSearchedFriend
     return (
         <div className="friend-list">
             <div className="friend-image">
-                <img src={Image} alt="" />
+                <img src={friend?.image_url ||  Image} alt="" />
+              <div >
+              {console.log(friend,'firend')}
+              </div>
             </div>
             <div className="friend-text">
                 <h5>{friend?.first_name} {friend?.last_name}</h5>

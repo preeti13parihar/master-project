@@ -6,7 +6,7 @@ import HeaderDashboard from "../../components/header/header";
 import MapComponent from "../../components/Map/index2";
 import ProfileCards from "../../components/ProfileCards/index";
 import Image from "../../images/default-profile.png";
-import { getAllBreadcrumbs, getProfile, getRecommendations } from "../../services/apis";
+import { getAllBreadcrumbs, getProfile, getRecommendations, updateProfilePic } from "../../services/apis";
 import "./profile.css";
 
 export default function Profile() {
@@ -21,24 +21,13 @@ export default function Profile() {
   useEffect(() => {
     getSetAllBreadcrumbs();
     setloading(true);
-    getProfile().then(response => {
-      if (response?.data) {
-        setloading(false);
-        setprofileData(response.data);
-        localStorage.setItem('userId', response.data?.uuid);
-      }
-    }).catch(err => {
-      console.log(err, 'err');
-      setloading(false);
-    });
-
-
+    getPrf();
     // Get Recommendations
     setloading(true);
     if (navigator?.geolocation) {
       navigator?.geolocation?.getCurrentPosition((pst) => {
         getRecommendations(
-          // pst?.coords || 
+          pst?.coords || 
           { longitude: -73.935242, latitude: 40.730610 }).then(response => {
             if (response?.data) {
               let dataList = response.data?.restaurants?.businesses;
@@ -56,6 +45,20 @@ export default function Profile() {
   }, []);
 
 
+  function getPrf(params) {
+    getProfile().then(response => {
+      if (response?.data) {
+        setloading(false);
+        setprofileData(response.data);
+        localStorage.setItem('userId', response.data?.uuid);
+      }
+    }).catch(err => {
+      console.log(err, 'err');
+      setloading(false);
+    });
+  }
+
+
 
   function getSetAllBreadcrumbs() {
     getAllBreadcrumbs().then(response => {
@@ -70,6 +73,21 @@ export default function Profile() {
     );
   }
 
+  function uploadImage(event) {
+    console.log(event, 'event', event.target.files);
+    let data = new FormData();
+    data.append('file', event.target.files[0]);
+    data.append('description', 'description');
+    updateProfilePic(data).then(response => {
+      if (response?.data) {
+        getPrf();
+      }
+    }).catch(err => {
+      console.log(err, 'err');
+    });
+  }
+
+
   return (
     <>
       <HeaderDashboard />
@@ -81,9 +99,13 @@ export default function Profile() {
                 <Spinner animation="grow" />
                 :
                 <div className="left">
-                  <div className="profile-image">
-                    <img src={Image} alt="none" />
+                  <div>
+                    <div className="profile-image">
+                      <img src={profileData?.image || Image} alt="none" />
+                    </div>
+                    <input type="file" onChange={uploadImage} />
                   </div>
+
                   <div className="profile-details">
                     <h2>{profileData?.first_name} {profileData?.last_name}</h2>
                     <p>
@@ -130,7 +152,7 @@ export default function Profile() {
       </div>
       <div className="restaurants">
         <div className="container">
-          <h2>Top 5 Restaurants</h2>
+          <h2>Restaurant Recommendation For You</h2>
           <div className="restaurants-bottom">
             <div className="cards">
               {recommendations?.map(restaurant => <Card restaurant={restaurant} />)}

@@ -28,7 +28,6 @@ export default function SignUp() {
 
 
   function handleSignUp(e) {
-    alert(1);
     e.preventDefault();
     setloading(true);
 

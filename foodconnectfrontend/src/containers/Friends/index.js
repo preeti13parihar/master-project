@@ -5,7 +5,7 @@ import Footer from "../../components/footer";
 import FindFriend from "../../components/FriendsCard/findFreinds";
 import FriendCard from "../../components/FriendsCard/index";
 import HeaderDashboard from "../../components/header/header";
-import { getFriendRequests, getFriendsByName, getFriendsList, getSentFriendRequests } from "../../services/apis";
+import { getFriendRequests, getFriendsByName, getFriendsList, getSentFriendRequests, getSuggestedFriends } from "../../services/apis";
 import "./friends.css";
 
 export default function Friends() {
@@ -18,9 +18,11 @@ export default function Friends() {
   const [searchText, setsearchText] = useState('');
   const [friendRequests, setfriendRequests] = useState([]);
   const [sentfriendRequests, setsentfriendRequests] = useState([]);
+  const [suggestedFrieds, setsuggestedFrieds] = useState([]);
 
   useEffect(() => {
     getSetFriendsList();
+    getSetSuggestedFriends();
   }, []);
 
   function getSetFriendsList() {
@@ -33,6 +35,17 @@ export default function Friends() {
     }).catch(err => {
       console.log(err, 'err');
       setloading(false);
+    }
+    );
+  }
+
+  function getSetSuggestedFriends() {
+    getSuggestedFriends().then(response => {
+      if (response?.data) {
+        setsuggestedFrieds(response?.data?.suggestions || []);
+      }
+    }).catch(err => {
+      console.log(err, 'err');
     }
     );
   }
@@ -181,7 +194,16 @@ export default function Friends() {
               </Tab>
             </Tabs>
           </div>
-
+          <h3 className="p-3">Friends Recommendation:</h3>
+          <div className=" row">
+            {
+              suggestedFrieds?.map(friend =>
+                <div className="col-lg-6">
+                  <FriendCard friend={friend}
+                    filterSearchedFriends={filterSearchedFriends} />
+                </div>)
+            }
+          </div>
         </div>
       </div>
       <Footer />

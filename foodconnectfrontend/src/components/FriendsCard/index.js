@@ -6,7 +6,7 @@ export default function FriendsCard({ friend }) {
     <>
       <div className="friend-list">
         <div className="friend-image">
-          <img src={Image} alt="" />
+          <img src={friend?.image_url || friend?.image || Image} alt="" />
         </div>
         <div className="friend-text">
           <h5>{friend?.first_name}{" "}{friend?.last_name} </h5>

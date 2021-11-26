@@ -65,7 +65,7 @@ function MyComponent({ trails = [{
       {
         trails?.map(item => <Marker
           key={item.visit_id}
-          position={{ lat: item.latitude, lng: item.longitude }}
+          position={{ lat: parseFloat(item.latitude), lng: parseFloat(item.longitude) }}
           icon={{ url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }}
         />)
       }
