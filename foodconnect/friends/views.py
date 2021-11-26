@@ -101,13 +101,15 @@ class FriendViewSet(viewsets.ModelViewSet):
         try:
             request_set = Friend.objects.requests(request.user)
             result =[]
-            for request in request_set:
+            for r in request_set:
+                image_url = user_model.objects.get(uuid=str(r.from_user.uuid)).image
                 result.append({
-                    "id": request.id,
-                    "from_user": str(request.from_user.uuid).replace("-",""),
-                    "first_name": request.from_user.first_name,
-                    "last_name": request.from_user.last_name,
-                    "received_at": request.created
+                    "id": r.id,
+                    "from_user": str(r.from_user.uuid).replace("-",""),
+                    "first_name": r.from_user.first_name,
+                    "last_name": r.from_user.last_name,
+                    "received_at": r.created,
+                    "image_url": image_url
                 })
                 
             # serializer = FriendSerializer(request_set, many=True)
@@ -123,12 +125,14 @@ class FriendViewSet(viewsets.ModelViewSet):
             request_set = Friend.objects.sent_requests(request.user)
             result =[]
             for request in request_set:
+                image_url = user_model.objects.get(uuid=str(request.to_user.uuid)).image
                 result.append({
                     "id": request.id,
                     "to_user": str(request.to_user.uuid).replace("-",""),
                     "first_name": request.to_user.first_name,
                     "last_name": request.to_user.last_name,
-                    "sent_at": request.created
+                    "sent_at": request.created,
+                    "image_url": image_url
                 })
                 
             # serializer = FriendSerializer(request_set, many=True)
