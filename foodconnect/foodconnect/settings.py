@@ -221,6 +221,7 @@ USE_TZ = True
 
 STATIC_URL='/static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -231,4 +232,3 @@ ML_URL = os.path.join(BASE_DIR, 'foodconnect/static/')
 KNN=pickle.load(open(ML_URL+'foodconnect/KNNModel', 'rb'))
 LE=pickle.load(open(ML_URL+'foodconnect/LabelEncoder', 'rb'))
 CSR=scipy.sparse.load_npz(ML_URL+'foodconnect/sparse_matrix.npz')
-
