@@ -7,6 +7,7 @@ from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+from django.conf import settings
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -217,9 +218,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+<<<<<<< HEAD
+STATIC_URL='/static/'
+=======
 STATIC_URL = '/static/'
+>>>>>>> b348e64560c1436e4a02da2c0cd01f3ee1175b19
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+<<<<<<< HEAD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ML_URL = os.path.join(BASE_DIR, 'foodconnect/static/')
+
+KNN=pickle.load(open(ML_URL+'foodconnect/KNNModel', 'rb'))
+LE=pickle.load(open(ML_URL+'foodconnect/LabelEncoder', 'rb'))
+CSR=scipy.sparse.load_npz(ML_URL+'foodconnect/sparse_matrix.npz')
+=======
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+>>>>>>> b348e64560c1436e4a02da2c0cd01f3ee1175b19
