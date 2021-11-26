@@ -11,8 +11,8 @@ class FriendSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Friend
         # exclude = ['name']
-        fields = "__all__" #
-        # fields = ("id", "created", "to_user", "from_user", "first_name", "last_name", "image_url")
+        # fields = "__all__" #
+        fields = ("id", "created", "to_user", "from_user", "first_name", "last_name", "image_url")
 
     first_name = serializers.SerializerMethodField(read_only=True)
     last_name = serializers.SerializerMethodField(read_only=True)
