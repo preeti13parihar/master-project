@@ -3,6 +3,8 @@ import logging
 import json
 from urllib import request
 from pathlib import Path
+import scipy
+import pickle
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
