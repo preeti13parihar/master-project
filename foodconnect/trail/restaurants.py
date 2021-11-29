@@ -12,13 +12,13 @@ class RestaurantViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     @action(methods=["GET"], detail=True)
-    def get_restaurants(self, request, limit=25, offset=0):
+    def get_restaurants(self, request, limit=50):
 
         if 'lat' in request.GET and 'long' in request.GET:
             parameters = {
                 'latitude': request.GET['lat'],
                 'longitude': request.GET['long'],
-                'offset': request.GET.get("offset", offset),
+                'offset': request.GET.get("offset", 0),
                 'limit': limit,
                 'term': 'restaurants'
             }
@@ -52,7 +52,7 @@ class RestaurantViewSet(viewsets.ModelViewSet):
             success_response = {'success': True, 'restaurants': {'businesses':restaurants}}
             return JsonResponse(success_response)
         else:
-            return self.get_restaurants(request,5,60)
+            return self.get_restaurants(request, 5)
     
     def get_recommendations(self,filter_input,n=5):
         labelEncodedIDS=[]
