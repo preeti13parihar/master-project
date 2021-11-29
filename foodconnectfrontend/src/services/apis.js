@@ -128,7 +128,7 @@ export const getRestaurantsList = ({ latitude, longitude }) => {
 
 
 export const getRecommendations = ({ latitude, longitude }) => {
-  return axios.get(`trail/getRecommededRestaurants?long=${longitude}&lat=${latitude}`);
+  return axios.get(`trail/getRecommededRestaurants?long=${longitude}&lat=${latitude}&offset=60`);
 };
 
 export const updateProfilePic = (formData) => {

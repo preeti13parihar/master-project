@@ -234,7 +234,7 @@ export default function RestaurantsDetailPage() {
 
                       <div className="review-head">
                         <div className="review-image">
-                          <img src={ProfileImage} alt="profile" />
+                          <img src={frnd?.image || ProfileImage} alt="profile" />
                         </div>
                         <div className="review-text">
                           <h4>{frnd?.first_name} {frnd?.last_name}</h4>
