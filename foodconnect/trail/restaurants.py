@@ -40,19 +40,19 @@ class RestaurantViewSet(viewsets.ModelViewSet):
             return JsonResponse(error_object)
     
     def recommend_restaurants(self, request):
-        # user_id = request.user.uuid
-        # user_trail = Trail.objects.filter(user_id=user_id).values_list('restaurant_id', flat=True)
-        # restaurnatsIDS=self.get_recommendations(list(user_trail))
-        # restaurants=[]
-        # if len(restaurnatsIDS)>0:
-        #     for ids in restaurnatsIDS:
-        #         response: JsonResponse=self.get_restaurant_by_ID(ids=ids)
-        #         jResponse = json.loads(response.content.decode('utf-8'))
-        #         restaurants.append(jResponse['restaurants'])
-        #     success_response = {'success': True, 'restaurants': {'businesses':restaurants}}
-        #     return JsonResponse(success_response)
-        # else:
-        return self.get_restaurants(request,5,60)
+        user_id = request.user.uuid
+        user_trail = Trail.objects.filter(user_id=user_id).values_list('restaurant_id', flat=True)
+        restaurnatsIDS=self.get_recommendations(list(user_trail))
+        restaurants=[]
+        if len(restaurnatsIDS)>0:
+            for ids in restaurnatsIDS:
+                response: JsonResponse=self.get_restaurant_by_ID(ids=ids)
+                jResponse = json.loads(response.content.decode('utf-8'))
+                restaurants.append(jResponse['restaurants'])
+            success_response = {'success': True, 'restaurants': {'businesses':restaurants}}
+            return JsonResponse(success_response)
+        else:
+            return self.get_restaurants(request,5,60)
     
     def get_recommendations(self,filter_input,n=5):
         labelEncodedIDS=[]
