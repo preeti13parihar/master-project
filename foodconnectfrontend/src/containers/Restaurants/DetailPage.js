@@ -85,7 +85,7 @@ export default function RestaurantsDetailPage() {
   const [loading, setloading] = useState(false);
   const [friendsReviews, setfriendsReviews] = useState([]);
   const [hasUserVisited, setHaseUserVisted] = useState(true);
-  const [userName, setuserName] = useState('');
+  const [userInfo, setuserInfo] = useState('');
 
 
   useEffect(async () => {
@@ -108,7 +108,7 @@ export default function RestaurantsDetailPage() {
     getReviews(id || restaurantDetail?.id).then(response => {
       if (response?.data && response?.data?.success) {
         setreviews(response?.data?.review);
-        setuserName(response?.data?.userName);
+        setuserInfo(response?.data?.userInfo);
         setimages(response?.data?.images);
         setloading(false);
       }
@@ -223,7 +223,7 @@ export default function RestaurantsDetailPage() {
                 loading ?
                   <Spinner animation="grow" />
                   :
-                  reviews?.map(review => <ReviewItem review={review} userName={userName} key={review?.review_id} getRating={getRating} />)
+                  reviews?.map(review => <ReviewItem review={review} userInfo={userInfo} key={review?.review_id} getRating={getRating} />)
               }
             </Tab>
             <Tab eventKey="Review" title="Friends Review">
@@ -270,15 +270,15 @@ export default function RestaurantsDetailPage() {
     </>
   );
 
-  function ReviewItem({ review, getRating, userName }) {
+  function ReviewItem({ review, getRating, userInfo }) {
     return (
       <>
         <div className="review-head">
           <div className="review-image">
-            <img src={ProfileImage} alt="profile" />
+            <img src={userInfo?.image || ProfileImage} alt="profile" />
           </div>
           <div className="review-text">
-            <h4>{userName || ''}</h4>
+            <h4>{userInfo?.first_name} {userInfo?.last_name}</h4>
             <span>
               {getRating(review?.rating)} {review?.rating}
             </span>
