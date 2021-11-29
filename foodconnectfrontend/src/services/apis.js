@@ -48,6 +48,10 @@ export const getSuggestedFriends = async () => {
   return axios.get(`/friends/suggestFriends`);
 };
 
+export const getSuggestedRestaurants = async () => {
+  return axios.get(`/trail/getRecommededRestaurants?long=${long}&lat=${lat}`);
+};
+
 export const getReviews = async (restaurantId) => {
   return axios.get(`/reviews/getReview?restaurant_id=${restaurantId}`);
 };
@@ -124,7 +128,7 @@ export const getRestaurantsList = ({ latitude, longitude }) => {
 
 
 export const getRecommendations = ({ latitude, longitude }) => {
-  return axios.get(`/trail/restaurants?long=${longitude}&lat=${latitude}`);
+  return axios.get(`trail/getRecommededRestaurants?long=${longitude}&lat=${latitude}`);
 };
 
 export const updateProfilePic = (formData) => {

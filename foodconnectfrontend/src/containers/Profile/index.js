@@ -31,9 +31,9 @@ export default function Profile() {
           { longitude: -73.935242, latitude: 40.730610 }).then(response => {
             if (response?.data) {
               let dataList = response.data?.restaurants?.businesses;
-              if (dataList.length > 5) {
-                dataList.length = 5;
-              }
+              // if (dataList.length > 5) {
+              //   dataList.length = 5;
+              // }
               setrecommendations(dataList);
             }
           }).catch(err => {
@@ -78,6 +78,7 @@ export default function Profile() {
     let data = new FormData();
     data.append('file', event.target.files[0]);
     data.append('description', 'description');
+
     updateProfilePic(data).then(response => {
       if (response?.data) {
         getPrf();
@@ -101,7 +102,8 @@ export default function Profile() {
                 <div className="left">
                   <div>
                     <div className="profile-image">
-                      <img src={profileData?.image || Image} alt="none" />
+                      <img src={profileData?.image || Image} alt="none" 
+                  />
                     </div>
                     <input type="file" onChange={uploadImage} />
                   </div>
@@ -114,7 +116,7 @@ export default function Profile() {
                 </p>
                     <div className="profile-stats">
                       <div className="profile-breadcrumbs">
-                        <h3>Breadcrumbs</h3>
+                        <h3>Trails</h3>
                         <span>{trailCount}</span>
                       </div>
                       <div>
@@ -152,7 +154,7 @@ export default function Profile() {
       </div>
       <div className="restaurants">
         <div className="container">
-          <h2>Restaurant Recommendation For You</h2>
+          <h2>Restaurant Recommendation for You</h2>
           <div className="restaurants-bottom">
             <div className="cards">
               {recommendations?.map(restaurant => <Card restaurant={restaurant} />)}

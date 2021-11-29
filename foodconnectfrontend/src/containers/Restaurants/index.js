@@ -53,7 +53,7 @@ export default function Restaurants() {
         <div className="container">
           <h2>Restaurants</h2>
           <div className="restaurants-bottom">
-            <h3>( {list?.length} Results Found )</h3>
+            <h3> Restaurants Near you </h3>
             {
               loading ?
                 <Spinner animation="grow" />
