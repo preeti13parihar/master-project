@@ -73,11 +73,12 @@ export default function Profile() {
     );
   }
 
+ 
   function uploadImage(event) {
+    
     console.log(event, 'event', event.target.files);
     let data = new FormData();
     data.append('file', event.target.files[0]);
-    data.append('description', 'description');
 
     updateProfilePic(data).then(response => {
       if (response?.data) {
@@ -102,11 +103,13 @@ export default function Profile() {
                 <div className="left">
                   <div>
                     <div className="profile-image">
-                      <img src={profileData?.image || Image} alt="none" 
+                      <img src={(profileData?.image || Image )} onClick={uploadImage} 
                   />
                     </div>
-                    <input type="file" onChange={uploadImage} />
+                    <input type="file" onChange={uploadImage}  />
+      
                   </div>
+
 
                   <div className="profile-details">
                     <h2>{profileData?.first_name} {profileData?.last_name}</h2>

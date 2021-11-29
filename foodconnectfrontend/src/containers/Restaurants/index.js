@@ -22,9 +22,9 @@ export default function Restaurants() {
     setloading(true);
     if (navigator?.geolocation) {
       navigator?.geolocation?.getCurrentPosition((pst) => {
-        console.log('1111111', pst);
+       
         getRestaurantsList(
-          // pst?.coords ||
+          pst?.coords ||
           { longitude: -122.0777292, latitude: 37.3968274 }).then(res => {
             setrestaurantsList(res?.data?.restaurants?.businesses || []);
             setList(res?.data?.restaurants?.businesses || []);
