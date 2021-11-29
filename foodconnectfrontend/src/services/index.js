@@ -5,7 +5,7 @@ import axios from 'axios';
  */
 
 const customAxios = axios.create({
-  baseURL: 'http://localhost:8000/app',
+  baseURL: 'http://foodconnect.nktoolbox.com/app',
 });
 
 customAxios.interceptors.request.use(
