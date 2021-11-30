@@ -3,10 +3,13 @@ import logging
 import json
 from urllib import request
 from pathlib import Path
+import scipy
+import pickle
 from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+from django.conf import settings
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -36,18 +39,13 @@ AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
 AWS_REGION = os.getenv("AWS_REGION", None)
 S3_BUCKET = os.getenv("S3_BUCKET", None)
 S3_FILE_URL = f"http://s3-{AWS_REGION}.amazonaws.com/{S3_BUCKET}/"
-
-HOST = os.getenv("HOST", "127.0.0.1")
-PORT = os.getenv("PORT", 9091)
-PORT = int(PORT) if isinstance(PORT, str) else PORT
-ENV = os.getenv("ENV", "local")
-LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
-
 DB_NAME = os.getenv("DB_NAME", None)
-DB_HOST = os.getenv("DB_HOST", HOST)
 DB_USERNAME = os.getenv("DB_USERNAME", None)
 DB_PASSWORD = os.getenv("DB_PASSWORD", None)
-
+HOST = os.getenv("HOST", "127.0.0.1")
+PORT = os.getenv("PORT", 9091)
+ENV = os.getenv("ENV", "local")
+LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
 SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN", "localhost")
 SESSION_COOKIE_SECURE = os.getenv("SESSION_COOKIE_SECURE", True)
 SESSION_COOKIE_EXPIRY = os.getenv("SESSION_COOKIE_EXPIRY", 1)
@@ -138,19 +136,19 @@ REST_FRAMEWORK = {
 ROOT_URLCONF = 'foodconnect.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-        'context_processors': [
-            'django.template.context_processors.debug',
-            'django.template.context_processors.request',
-            'django.contrib.auth.context_processors.auth',
-            'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+{
+'BACKEND': 'django.template.backends.django.DjangoTemplates',
+'DIRS': [],
+'APP_DIRS': True,
+'OPTIONS': {
+'context_processors': [
+'django.template.context_processors.debug',
+'django.template.context_processors.request',
+'django.contrib.auth.context_processors.auth',
+'django.contrib.messages.context_processors.messages',
+],
+},
+},
 ]
 
 CORS_ALLOW_HEADERS = [
@@ -180,7 +178,7 @@ DATABASES = {
 'NAME': DB_NAME,
 'USER': DB_USERNAME,
 'PASSWORD': DB_PASSWORD,
-'HOST': DB_HOST, # Or an IP Address that your DB is hosted on
+'HOST': HOST, # Or an IP Address that your DB is hosted on
 'PORT': '3306',
 'OPTIONS': {
 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
@@ -222,9 +220,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+
+STATIC_URL='/static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ML_URL = os.path.join(BASE_DIR, 'foodconnect/static/')
+
+KNN=pickle.load(open(ML_URL+'foodconnect/KNNModel', 'rb'))
+LE=pickle.load(open(ML_URL+'foodconnect/LabelEncoder', 'rb'))
+CSR=scipy.sparse.load_npz(ML_URL+'foodconnect/sparse_matrix.npz')

@@ -16,11 +16,10 @@ class AwsDjangoMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        path = request.get_full_path()
-        path = path.strip("/")
-        path = os.path.basename(path)
+        # path = request.get_full_path()
         try:
-            if path in ["login", "signup", "confirm_signup", "csrf", "forgot_password", "confirm_forgot_password", "healthz"]:
+
+            if os.path.basename(request.path) in ["login", "signup", "confirm_signup", "csrf", "forgot_password", "confirm_forgot_password"]:
                 r = self.get_response(request)
                 # logger.info(r.content)
                 return r

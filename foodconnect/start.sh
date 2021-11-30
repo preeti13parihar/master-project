@@ -4,4 +4,4 @@ python manage.py makemigrations
 
 python manage.py migrate
 
-gunicorn --bind :3000 --workers 1 foodconnect.wsgi
+gunicorn --bind :9091 --workers 3 foodconnect.wsgi
