@@ -76,3 +76,17 @@
   width: 100%;
   height: 100%;
 }
+
+.uploader {
+opacity: 0;
+position: absolute;
+z-index: 1;
+left: 0;
+top: 0;
+width:200px;
+height:300px;
+}
+
+.container {
+position: relative
+}

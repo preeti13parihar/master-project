@@ -6,6 +6,7 @@ export default function Card({ restaurant }) {
   const history = useHistory();
 
   async function handleClick() {
+    console.log(restaurant,"restau")
     await localStorage.setItem('restaurant', JSON.stringify(restaurant));
     history.push(`/restaurants-detail`);
   }
@@ -14,6 +15,7 @@ export default function Card({ restaurant }) {
   return (
     <>
       <div className="card">
+    
         {/* <Link className="image" to={`/restaurants-detail`}> */}
         <div className="image">
           <img onClick={handleClick} src={image_url} alt="restaurant-image" />

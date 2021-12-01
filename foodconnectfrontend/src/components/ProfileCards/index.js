@@ -1,11 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./profilecard.css";
+import { useHistory } from "react-router-dom";
 export default function Card({ data }) {
+
+    const history = useHistory();
+
+  async function handleClick() {
+    console.log(data,"data")
+    await localStorage.setItem('restaurant', JSON.stringify(data));
+    history.push(`/restaurants-detail`);
+  }
+
+
   return (
     <>
       <Link>
-        <div className="trail-items">
+        <div onClick={handleClick} className="trail-items">
           <div className="trail-image">
             <img src={data?.image_url} alt="" />
           </div>

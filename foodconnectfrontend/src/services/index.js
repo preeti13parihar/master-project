@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const customAxios = axios.create({
   baseURL: 'https://foodzone.nktoolbox.com/app',
+    // baseURL: 'http://localhost:8000/app',
 });
 
 customAxios.interceptors.request.use(

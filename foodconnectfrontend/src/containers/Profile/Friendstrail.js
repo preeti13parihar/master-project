@@ -1,29 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
+import { useParams } from "react-router";
 import Card from "../../components/Cards";
 import Footer from "../../components/footer";
 import HeaderDashboard from "../../components/header/header";
 import MapComponent from "../../components/Map/index2";
 import ProfileCards from "../../components/ProfileCards/index";
 import Image from "../../images/default-profile.png";
-import { getAllBreadcrumbs, getProfile, getRecommendations, updateProfilePic } from "../../services/apis";
+import { getFriendsProfile,getAllBreadcrumbs, getProfile, getRecommendations, updateProfilePic } from "../../services/apis";
 import "./profile.css";
 
-export default function Profile() {
+export default function Profile(props) {
 
+console.log(props)
   const [loading, setloading] = useState(false);
   const [profileData, setprofileData] = useState(null);
   const [trailCount, settrailCount] = useState(0);
   const [friendCount, setfriendCount] = useState(0);
   const [trails, settrails] = useState([]);
   const [recommendations, setrecommendations] = useState([]);
+  const {uuid}=useParams()
+   const [image_url, setimage] = useState(null);
 
-  useEffect(() => {
+
+  useEffect(async () => {
     getSetAllBreadcrumbs();
-    setloading(true);
-    getPrf();
+    // setloading(true);
+    const image=await localStorage.getItem("image_url")
+    setimage(image)
+    // getPrf();
     // Get Recommendations
-    setloading(true);
+    // setloading(true);
     if (navigator?.geolocation) {
       navigator?.geolocation?.getCurrentPosition((pst) => {
         getRecommendations(
@@ -61,7 +68,8 @@ export default function Profile() {
 
 
   function getSetAllBreadcrumbs() {
-    getAllBreadcrumbs().then(response => {
+    console.log(uuid,"uuid")
+    getFriendsProfile(uuid).then(response => {
       if (response?.data) {
         settrailCount(response?.data?.trailCount);
         setfriendCount(response?.data?.friendCount);
@@ -101,21 +109,18 @@ export default function Profile() {
                 <Spinner animation="grow" />
                 :
                 <div className="left">
-                  <div className="contanier">
+                  <div>
                     <div className="profile-image">
-                      <img src={(profileData?.image || Image )} onClick={uploadImage} 
+                      <img src= {image_url || Image }  alt="none" 
                   />
                     </div>
-                    <input type="file" onChange={uploadImage} className='uploader' />
-      
                   </div>
 
 
                   <div className="profile-details">
                     <h2>{profileData?.first_name} {profileData?.last_name}</h2>
                     <p>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>Santa
-                  Clara, CA 95054
+                       FRIEND'S PROFILE
                 </p>
                     <div className="profile-stats">
                       <div className="profile-breadcrumbs">
@@ -146,7 +151,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="trail">
-            <h4>Recent Trail</h4>
+            <h4>Friends Trail</h4>
             <div className="trail-list">
               {
                 trails?.map(trail => <ProfileCards data={trail} />)
@@ -155,16 +160,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
-      <div className="restaurants">
-        <div className="container">
-          <h2>Restaurant Recommendation for You</h2>
-          <div className="restaurants-bottom">
-            <div className="cards">
-              {recommendations?.map(restaurant => <Card restaurant={restaurant} />)}
-            </div>
-          </div>
-        </div>
-      </div>
+
       <Footer />
     </>
   );

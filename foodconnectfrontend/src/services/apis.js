@@ -23,12 +23,12 @@ export const confirmEmail = async (body) => {
 };
 
 
-
-
-
-
 export const getProfile = async () => {
   return axios.get('/auth/profile');
+};
+
+export const getFriendsProfile = async (uuid) => {
+   return axios.get(`trail/getTrail/?uuid=${uuid}`);
 };
 
 
@@ -53,6 +53,7 @@ export const getSuggestedRestaurants = async () => {
 };
 
 export const getReviews = async (restaurantId) => {
+
   return axios.get(`/reviews/getReview?restaurant_id=${restaurantId}`);
 };
 

@@ -12,7 +12,7 @@ import "./restaurants.css";
 
 
 function MyVerticallyCenteredModal(props) {
-  console.log(props, 'props props props', props.restaurantId);
+  console.log(props, 'props props props');
 
   const initForm = {
     "rating": 0,
@@ -89,31 +89,32 @@ export default function RestaurantsDetailPage() {
 
 
   useEffect(async () => {
-    const restaurant = await localStorage.getItem('restaurant');
+    const restaurant = await localStorage.getItem('restaurant') ;
     const userId = await localStorage.getItem('userId');
-    console.log(restaurant, 'restaurant restaurant');
-
     if (restaurant) {
       const rst = JSON.parse(restaurant);
-
-      getAllReviews(rst?.id);
-      getFriendReviews(rst?.id, userId);
+      console.log(rst,"jj", rst?.restaurant_id)
       setRestaurantDetail(rst);
+
+      getAllReviews(rst?.id || rst?.restaurant_id);
+      getFriendReviews(rst?.id ||rst?.restaurant_id ||  userId );
+      
+  
     }
 
   }, []);
 
   function getAllReviews(id) {
     setloading(true);
-    getReviews(id || restaurantDetail?.id).then(response => {
+    getReviews(id || restaurantDetail?.id ).then(response => {
       if (response?.data && response?.data?.success) {
+        console.log(response,"responsedata")
         setreviews(response?.data?.review);
         setuserInfo(response?.data?.userInfo);
         setimages(response?.data?.images);
         setloading(false);
       }
     }).catch(err => {
-      console.log(err, 'err');
       setloading(false);
     }
     );
