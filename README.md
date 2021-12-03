@@ -292,3 +292,24 @@ file: file
     "success": true,
     "Message": "Review Added Successfully"
 }
+
+
+## Restaurants Recommendation Systen
+
+For users to get personalized restaurant recommendations we have tried to build the recommendation engine for the restaurants. Using this Machine Learning Model, we will be recommending restaurants based on the restaurants that user has previously visited. We tried to provide recommendation based on collaborative filtering. We experimented User-Item based collaborative filtering and Item-Item Based collaborative filtering Methods.
+### Data Collection
+The Data that we used was an open-source version of Yelp_Review_Dataset provided by yelp.com. This dataset comprises reviews posted by all users for restaurants.
+
+### Model Training and Evaluation:
+
+#### User-Item Collaborative Filtering:
+We explored User-Item Collaborative Filtering.
+Using the surprise libraries Reader module we converted the data into Surprise trainset. Later tried training on algorithms like  Normal Predictor, Baseline only Algorithms, Singular value decomposition, Co Clustering algorithms, etc. Following is the Root Mean Square Error of the algorithms, Lesser the error better the model. So most of the  models performed decently.
+
+![RMSE vs Algorithms](./images/Graph1.jpeg)
+
+#### Item-Item Collaborative Filtering:
+We used, Item-Item Collaborative Filtering. In this type of recommendation system input is a restaurant (ITEM) and recommendation is a List of recommended restaurants(ITEM)
+
+Using the KNN algorithm we can suggest the N nearest restaurants for the supplied restaurants. The KNN algorithm is as on need basis. 
+Using the Sparse Matrix, and KNN Machine learning model restaurants can be recommended. This is usually the best way to recommend in classical machine learning when we have new users coming up in the system and hence this is the process we have used in our application.
