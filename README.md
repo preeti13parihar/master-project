@@ -42,6 +42,16 @@ All api response will have ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` he
 
 <br>
 
+## Front End
+### Front End Set Up:
+* Requirements:
+      Install node. Clone the project repo.
+      ```
+      cd foodconnectfrontend
+      npm install
+      npm run dev
+      ```
+
 
 ## Signup API
 ### Header
