@@ -306,7 +306,7 @@ The Data that we used was an open-source version of Yelp_Review_Dataset provided
 We explored User-Item Collaborative Filtering.
 Using the surprise libraries Reader module we converted the data into Surprise trainset. Later tried training on algorithms like  Normal Predictor, Baseline only Algorithms, Singular value decomposition, Co Clustering algorithms, etc. Following is the Root Mean Square Error of the algorithms, Lesser the error better the model. So most of the  models performed decently.
 
-![RMSE vs Algorithms](./images/Graph1.jpeg)
+![RMSE vs Algorithms](https://github.com/preeti13parihar/master-project/blob/main/Images/Graph1.jpeg)
 
 #### Item-Item Collaborative Filtering:
 We used, Item-Item Collaborative Filtering. In this type of recommendation system input is a restaurant (ITEM) and recommendation is a List of recommended restaurants(ITEM)
