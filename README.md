@@ -294,7 +294,7 @@ file: file
 }
 
 
-## Restaurants Recommendation Systen
+## Restaurants Recommendation System
 
 For users to get personalized restaurant recommendations we have tried to build the recommendation engine for the restaurants. Using this Machine Learning Model, we will be recommending restaurants based on the restaurants that user has previously visited. We tried to provide recommendation based on collaborative filtering. We experimented User-Item based collaborative filtering and Item-Item Based collaborative filtering Methods.
 ### Data Collection
@@ -306,7 +306,7 @@ The Data that we used was an open-source version of Yelp_Review_Dataset provided
 We explored User-Item Collaborative Filtering.
 Using the surprise libraries Reader module we converted the data into Surprise trainset. Later tried training on algorithms like  Normal Predictor, Baseline only Algorithms, Singular value decomposition, Co Clustering algorithms, etc. Following is the Root Mean Square Error of the algorithms, Lesser the error better the model. So most of the  models performed decently.
 
-![RMSE vs Algorithms](./images/Graph1.jpeg)
+![RMSE vs Algorithms](Images/Graph1.jpg)
 
 #### Item-Item Collaborative Filtering:
 We used, Item-Item Collaborative Filtering. In this type of recommendation system input is a restaurant (ITEM) and recommendation is a List of recommended restaurants(ITEM)
