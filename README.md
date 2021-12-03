@@ -313,3 +313,50 @@ We used, Item-Item Collaborative Filtering. In this type of recommendation syste
 
 Using the KNN algorithm we can suggest the N nearest restaurants for the supplied restaurants. The KNN algorithm is as on need basis. 
 Using the Sparse Matrix, and KNN Machine learning model restaurants can be recommended. This is usually the best way to recommend in classical machine learning when we have new users coming up in the system and hence this is the process we have used in our application.
+
+
+#### UI Screenshots
+
+###### Food-Connect Home Page
+
+![Food-Connect Home] (https://github.com/preeti13parihar/master-project/blob/main/Images/Home_Page.jfif)
+
+###### User Sign Up Page
+
+![Food-Connect Sign Up](https://github.com/preeti13parihar/master-project/blob/main/Images/SignUp_Page.jfif)
+
+###### User Log In Page
+
+![Food-Connect Log In](https://github.com/preeti13parihar/master-project/blob/main/Images/Login_Page.jfif)
+
+###### Profile and Trail Page
+
+![Food-Connect Profile and Trail](https://github.com/preeti13parihar/master-project/blob/main/Images/Profile_Page.jfif)
+
+###### List Restaurants Page
+
+![Food-Connect List Restaurants](https://github.com/preeti13parihar/master-project/blob/main/Images/ListOfRestaurants_Page.jfif)
+
+###### Restaurant Details and Review Page
+
+![Restaurant Details and Review](https://github.com/preeti13parihar/master-project/blob/main/Images/MyReviews_Page.jfif)
+
+###### Friends Review Page
+
+![Food-Connect Friends Review](https://github.com/preeti13parihar/master-project/blob/main/Images/FriendsReview_Page.jfif)
+
+###### Restaurants Recommendation Page 
+
+![Food-Connect Restaurants Recommendation](https://github.com/preeti13parihar/master-project/blob/main/Images/Recommended_Restaurants_Page.jfif)
+
+###### My Friends Page 
+
+![Food-Connect My Friends](https://github.com/preeti13parihar/master-project/blob/main/Images/MyFriends_Page.jfif)
+
+###### Find Friends Page
+
+![Food-Connect Find Friends](https://github.com/preeti13parihar/master-project/blob/main/Images/FindFriends_Page.jfif)
+
+###### Friends Recommendation Page 
+
+![Food-Connect Friends Recommendation](https://github.com/preeti13parihar/master-project/blob/main/Images/FriendRequest_Recommendation_Page.jfif)
