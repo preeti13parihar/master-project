@@ -59,6 +59,7 @@ export default function Restaurants() {
                 <Spinner animation="grow" />
                 :
                 <div className="cards">
+             
                   {list?.map(restaurant => <Card restaurant={restaurant} />)}
                 </div>
             }
