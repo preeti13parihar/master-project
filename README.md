@@ -28,6 +28,7 @@ Group Members:
     export DB_NAME="" 
     export DB_USERNAME="" 
     export DB_PASSWORD="" 
+    export YELP_API_KEY=""
     ```
 
     ```pip install -r requirements.txt```
@@ -153,7 +154,7 @@ Authorization: Basic "base64 username:password"
 
 ### Request
 ```
-    http://localhost:9091/app/foodzone/retaurants?lat=37.338207&long=-121.886330&offset=0
+    http://localhost:9091/app/trail/restaurants?lat=37.338207&long=-121.886330&offset=100
 ```
 
 ### Response
@@ -169,21 +170,12 @@ Authorization: Basic "base64 username:password"
                 "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/gKyzJmgR_XzLkV1HzoOUWQ/o.jpg",
                 "is_closed": false,
                 "url": "https://www.yelp.com/biz/philz-coffee-san-jose-2?adjust_creative=RVCCDq3K3YzW1McQBU0OeQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=RVCCDq3K3YzW1McQBU0OeQ",
-                "review_count": 2283,
-                "categories": [
-                    {
-                        "alias": "coffee",
-                        "title": "Coffee & Tea"
-                    }
                 ],
                 "rating": 4.5,
                 "coordinates": {
                     "latitude": 37.333609,
                     "longitude": -121.884901
                 },
-                "transactions": [
-                    "delivery"
-                ],
                 "price": "$",
                 "location": {
                     "address1": "118 Paseo De San Antonio Walk",
@@ -206,3 +198,97 @@ Authorization: Basic "base64 username:password"
     }
 }
 ```
+## Get list of trails
+### Method - Get
+### Header
+    pass ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers
+### Request
+Pass user's uuid
+```
+    http://localhost:9091/app/trail/getTrail?uuid=c544644b-77a0-4c3b-a336-fae66104e254
+```
+
+### Response
+```
+{
+    "success": true,
+    "trails": [
+        {
+            "visit_id": "5122b927-de75-4e3b-abf5-1f23077a240e",
+            "user_id_id": "c544644b-77a0-4c3b-a336-fae66104e254",
+            "restaurant_id": "easzRCwj5Yl-SZxvutO49A",
+            "name": "sweetgreen",
+            "latitude": "40.0192285507871",
+            "longitude": "-105.274593481116",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/WHuwapZrfTyhrUSjCopxZg/o.jpg",
+            "address": "1601 Pearl St",
+            "city": "Boulder",
+            "state": "CO",
+            "country": "US",
+            "zipcode": "80302",
+            "phone": "+17202593557",
+            "price": "",
+            "created_on": "2021-11-26T01:55:04.423Z"
+        } ...  
+    ],
+    "trailCount": 13,
+    "friendCount": 6
+}
+```
+
+
+## Add Trail
+### Method - POST
+### Header
+    pass ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers
+### Request
+```
+    http://localhost:9091/app/trail/addTrail
+```
+### Request Body
+```
+{
+ "latitude": 40.0192285507871,
+"longitude": -105.274593481116,
+"address": "1601 Pearl St",
+"city": "Boulder",
+"zipcode": "80302",
+"country": "US",
+"state": "CO",
+"restaurant_id": "easzRCwj5Yl-SZxvutO49A",
+"name": "sweetgreen",
+"image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/WHuwapZrfTyhrUSjCopxZg/o.jpg",
+"phone": "+17202593557"
+}
+```
+
+### Response
+```
+{success: True, message: "Trail Added Successfully"}
+```
+
+## Add Review
+### Method - POST
+### Header
+    pass ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers
+### Request
+```
+    http://localhost:9091/app/reviews/addReview
+```
+### Request Body
+```
+Form-data
+
+restaurant_id:zFT7bFL0Gd3k4b8j1skBbA
+rating:5
+review:What a restaurant!One of a kind!
+recommended_dishes:French Toast, Burger
+file: file
+```
+
+### Response
+
+{
+    "success": true,
+    "Message": "Review Added Successfully"
+}
