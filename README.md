@@ -326,6 +326,11 @@ We used, Item-Item Collaborative Filtering. In this type of recommendation syste
 Using the KNN algorithm we can suggest the N nearest restaurants for the supplied restaurants. The KNN algorithm is as on need basis. 
 Using the Sparse Matrix, and KNN Machine learning model restaurants can be recommended. This is usually the best way to recommend in classical machine learning when we have new users coming up in the system and hence this is the process we have used in our application.
 
+## FrontEnd 
+### Pre-requisites Set Up:
+
+-> npm install
+-> npm run dev
 
 ## UI Screenshots
 
