@@ -10,6 +10,39 @@ Group Members:
 
 <br>
 
+
+## Application Architecture
+![Application Architecture](/docs/aws/app-arch.png)
+
+## Deployment Architecture
+![Deployment Architecture](/docs/aws/deployment.png)
+
+## CI/CD Pipeline
+* ### AWS CodeCommit Repos
+![AWS CodeCommit Repos](/docs/aws/Repos.png)
+
+* ### AWS CodeBuild
+![AWS CodeBuild](/docs/aws/code-build.png)
+
+* ### AWS Code Pipeline
+![AWS Code Pipeline](/docs/aws/pipeline.png)
+
+* ### AWS EKS Cluster
+![AWS EKS Cluster](/docs/aws/Cluster.png)
+
+* ### AWS EKS Cluster Nodes
+![AWS EKS Cluster Nodes](/docs/aws/cluster-nodes.png)
+
+* ### Kubernets Pods, Services, Ingress
+![Kubernets Pods, Services, Ingress](/docs/aws/pods.png)
+
+* ### AWS Network Load Balancer
+![AWS Network Load Balancer](/docs/aws/network-load-balancer.png)
+
+* ### AWS Route53 Record
+![AWS Route53 Record](/docs/aws/Route53-record.png)
+
+
 ## Backend APIs
 ### Pre-requisites Set Up:
 
