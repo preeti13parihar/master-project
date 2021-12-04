@@ -199,7 +199,7 @@ export default function Friends() {
             {
               suggestedFrieds?.map(friend =>
                 <div className="col-lg-6">
-                  <FriendCard friend={friend}
+                  <FindFriend friend={friend}
                     filterSearchedFriends={filterSearchedFriends} />
                 </div>)
             }

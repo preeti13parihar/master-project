@@ -10,6 +10,39 @@ Group Members:
 
 <br>
 
+
+## Application Architecture
+![Application Architecture](/docs/aws/app-arch.png)
+
+## Deployment Architecture
+![Deployment Architecture](/docs/aws/deployment.png)
+
+## CI/CD Pipeline
+* ### AWS CodeCommit Repos
+![AWS CodeCommit Repos](/docs/aws/Repos.png)
+
+* ### AWS CodeBuild
+![AWS CodeBuild](/docs/aws/code-build.png)
+
+* ### AWS Code Pipeline
+![AWS Code Pipeline](/docs/aws/pipeline.png)
+
+* ### AWS EKS Cluster
+![AWS EKS Cluster](/docs/aws/Cluster.png)
+
+* ### AWS EKS Cluster Nodes
+![AWS EKS Cluster Nodes](/docs/aws/cluster-nodes.png)
+
+* ### Kubernets Pods, Services, Ingress
+![Kubernets Pods, Services, Ingress](/docs/aws/pods.png)
+
+* ### AWS Network Load Balancer
+![AWS Network Load Balancer](/docs/aws/network-load-balancer.png)
+
+* ### AWS Route53 Record
+![AWS Route53 Record](/docs/aws/Route53-record.png)
+
+
 ## Backend APIs
 ### Pre-requisites Set Up:
 
@@ -28,6 +61,7 @@ Group Members:
     export DB_NAME="" 
     export DB_USERNAME="" 
     export DB_PASSWORD="" 
+    export YELP_API_KEY=""
     ```
 
     ```pip install -r requirements.txt```
@@ -40,6 +74,18 @@ Group Members:
 All api response will have ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers, pass ```ACCESSTOKEN``` and ```REFRESHTOKEN``` headers for further api access
 
 <br>
+
+## Front End
+### Front End Set Up:
+* Requirements:
+      Install node. 
+      Clone the project repo.
+      
+      ```
+      cd foodconnectfrontend
+      npm install
+      npm run dev
+      ```
 
 
 ## Signup API
@@ -153,7 +199,7 @@ Authorization: Basic "base64 username:password"
 
 ### Request
 ```
-    http://localhost:9091/app/foodzone/retaurants?lat=37.338207&long=-121.886330&offset=0
+    http://localhost:9091/app/trail/restaurants?lat=37.338207&long=-121.886330&offset=100
 ```
 
 ### Response
@@ -169,21 +215,12 @@ Authorization: Basic "base64 username:password"
                 "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/gKyzJmgR_XzLkV1HzoOUWQ/o.jpg",
                 "is_closed": false,
                 "url": "https://www.yelp.com/biz/philz-coffee-san-jose-2?adjust_creative=RVCCDq3K3YzW1McQBU0OeQ&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=RVCCDq3K3YzW1McQBU0OeQ",
-                "review_count": 2283,
-                "categories": [
-                    {
-                        "alias": "coffee",
-                        "title": "Coffee & Tea"
-                    }
                 ],
                 "rating": 4.5,
                 "coordinates": {
                     "latitude": 37.333609,
                     "longitude": -121.884901
                 },
-                "transactions": [
-                    "delivery"
-                ],
                 "price": "$",
                 "location": {
                     "address1": "118 Paseo De San Antonio Walk",
@@ -206,3 +243,170 @@ Authorization: Basic "base64 username:password"
     }
 }
 ```
+## Get list of trails
+### Method - Get
+### Header
+    pass ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers
+### Request
+Pass user's uuid
+```
+    http://localhost:9091/app/trail/getTrail?uuid=c544644b-77a0-4c3b-a336-fae66104e254
+```
+
+### Response
+```
+{
+    "success": true,
+    "trails": [
+        {
+            "visit_id": "5122b927-de75-4e3b-abf5-1f23077a240e",
+            "user_id_id": "c544644b-77a0-4c3b-a336-fae66104e254",
+            "restaurant_id": "easzRCwj5Yl-SZxvutO49A",
+            "name": "sweetgreen",
+            "latitude": "40.0192285507871",
+            "longitude": "-105.274593481116",
+            "image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/WHuwapZrfTyhrUSjCopxZg/o.jpg",
+            "address": "1601 Pearl St",
+            "city": "Boulder",
+            "state": "CO",
+            "country": "US",
+            "zipcode": "80302",
+            "phone": "+17202593557",
+            "price": "",
+            "created_on": "2021-11-26T01:55:04.423Z"
+        } ...  
+    ],
+    "trailCount": 13,
+    "friendCount": 6
+}
+```
+
+
+## Add Trail
+### Method - POST
+### Header
+    pass ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers
+### Request
+```
+    http://localhost:9091/app/trail/addTrail
+```
+### Request Body
+```
+{
+ "latitude": 40.0192285507871,
+"longitude": -105.274593481116,
+"address": "1601 Pearl St",
+"city": "Boulder",
+"zipcode": "80302",
+"country": "US",
+"state": "CO",
+"restaurant_id": "easzRCwj5Yl-SZxvutO49A",
+"name": "sweetgreen",
+"image_url": "https://s3-media1.fl.yelpcdn.com/bphoto/WHuwapZrfTyhrUSjCopxZg/o.jpg",
+"phone": "+17202593557"
+}
+```
+
+### Response
+```
+{success: True, message: "Trail Added Successfully"}
+```
+
+## Add Review
+### Method - POST
+### Header
+    pass ```HTTP_ACCESSTOKEN``` and ```HTTP_REFRESHTOKEN``` headers
+### Request
+```
+    http://localhost:9091/app/reviews/addReview
+```
+### Request Body
+```
+Form-data
+
+restaurant_id:zFT7bFL0Gd3k4b8j1skBbA
+rating:5
+review:What a restaurant!One of a kind!
+recommended_dishes:French Toast, Burger
+file: file
+```
+
+### Response
+
+{
+    "success": true,
+    "Message": "Review Added Successfully"
+}
+
+
+## Restaurants Recommendation Systen
+
+For users to get personalized restaurant recommendations we have tried to build the recommendation engine for the restaurants. Using this Machine Learning Model, we will be recommending restaurants based on the restaurants that user has previously visited. We tried to provide recommendation based on collaborative filtering. We experimented User-Item based collaborative filtering and Item-Item Based collaborative filtering Methods.
+### Data Collection
+The Data that we used was an open-source version of Yelp_Review_Dataset provided by yelp.com. This dataset comprises reviews posted by all users for restaurants.
+
+### Model Training and Evaluation:
+
+#### User-Item Collaborative Filtering:
+We explored User-Item Collaborative Filtering.
+Using the surprise libraries Reader module we converted the data into Surprise trainset. Later tried training on algorithms like  Normal Predictor, Baseline only Algorithms, Singular value decomposition, Co Clustering algorithms, etc. Following is the Root Mean Square Error of the algorithms, Lesser the error better the model. So most of the  models performed decently.
+
+![RMSE vs Algorithms](https://github.com/preeti13parihar/master-project/blob/main/Images/Graph1.jpg)
+
+#### Item-Item Collaborative Filtering:
+We used, Item-Item Collaborative Filtering. In this type of recommendation system input is a restaurant (ITEM) and recommendation is a List of recommended restaurants(ITEM)
+
+Using the KNN algorithm we can suggest the N nearest restaurants for the supplied restaurants. The KNN algorithm is as on need basis. 
+Using the Sparse Matrix, and KNN Machine learning model restaurants can be recommended. This is usually the best way to recommend in classical machine learning when we have new users coming up in the system and hence this is the process we have used in our application.
+
+## FrontEnd 
+### Pre-requisites Set Up:
+
+-> npm install
+-> npm run dev
+
+## UI Screenshots
+
+### Food-Connect Home Page
+
+![Food-Connect Home](https://github.com/preeti13parihar/master-project/blob/main/Images/Home_Page.jfif)
+
+### User Sign Up Page
+
+![Food-Connect Sign Up](https://github.com/preeti13parihar/master-project/blob/main/Images/SignUp_Page.jfif)
+
+### User Log In Page
+
+![Food-Connect Log In](https://github.com/preeti13parihar/master-project/blob/main/Images/Login_Page.jfif)
+
+### Profile and Trail Page
+
+![Food-Connect Profile and Trail](https://github.com/preeti13parihar/master-project/blob/main/Images/Profile_Page.jfif)
+
+### List Restaurants Page
+
+![Food-Connect List Restaurants](https://github.com/preeti13parihar/master-project/blob/main/Images/ListOfRestaurants_Page.jfif)
+
+### Restaurant Details and Review Page
+
+![Restaurant Details and Review](https://github.com/preeti13parihar/master-project/blob/main/Images/MyReviews_Page.jfif)
+
+### Friends Review Page
+
+![Food-Connect Friends Review](https://github.com/preeti13parihar/master-project/blob/main/Images/FriendsReview_Page.jfif)
+
+### Restaurants Recommendation Page 
+
+![Food-Connect Restaurants Recommendation](https://github.com/preeti13parihar/master-project/blob/main/Images/Recommended_Restaurants_Page.jfif)
+
+### My Friends Page 
+
+![Food-Connect My Friends](https://github.com/preeti13parihar/master-project/blob/main/Images/MyFriends_Page.jfif)
+
+### Find Friends Page
+
+![Food-Connect Find Friends](https://github.com/preeti13parihar/master-project/blob/main/Images/FindFriends_Page.jfif)
+
+### Friends Recommendation Page 
+
+![Food-Connect Friends Recommendation](https://github.com/preeti13parihar/master-project/blob/main/Images/FriendRequest_Recommendation_Page.jfif)

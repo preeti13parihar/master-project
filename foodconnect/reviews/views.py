@@ -40,7 +40,8 @@ class ImageUploader(mixins.ListModelMixin, APIView):
             #     file_serialzer = ImageSerialzer(data=request.data)
 
             # print(file_serialzer)
-            file_serialzer = ProfileImageSerialzer(data=request.data)
+            request.data["description"] = "profile pic"
+            file_serialzer = ProfileImageSerialzer(data=request.data, partial=True)
             uuid = str(request.user.uuid)
             url = upload_image(request.FILES['file'], "profiles/" + uuid)
 

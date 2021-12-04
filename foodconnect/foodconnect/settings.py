@@ -39,11 +39,14 @@ AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", None)
 AWS_REGION = os.getenv("AWS_REGION", None)
 S3_BUCKET = os.getenv("S3_BUCKET", None)
 S3_FILE_URL = f"http://s3-{AWS_REGION}.amazonaws.com/{S3_BUCKET}/"
-DB_NAME = os.getenv("DB_NAME", None)
-DB_USERNAME = os.getenv("DB_USERNAME", None)
-DB_PASSWORD = os.getenv("DB_PASSWORD", None)
 HOST = os.getenv("HOST", "127.0.0.1")
 PORT = os.getenv("PORT", 9091)
+PORT = int(PORT) if isinstance(PORT, str) else PORT
+
+DB_NAME = os.getenv("DB_NAME", None)
+DB_HOST = os.getenv("DB_HOST", HOST)
+DB_USERNAME = os.getenv("DB_USERNAME", None)
+DB_PASSWORD = os.getenv("DB_PASSWORD", None)
 ENV = os.getenv("ENV", "local")
 LOG_LEVEL = os.getenv("LOG_LEVEL", logging.INFO)
 SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN", "localhost")
@@ -178,7 +181,7 @@ DATABASES = {
 'NAME': DB_NAME,
 'USER': DB_USERNAME,
 'PASSWORD': DB_PASSWORD,
-'HOST': HOST, # Or an IP Address that your DB is hosted on
+'HOST': DB_HOST, # Or an IP Address that your DB is hosted on
 'PORT': '3306',
 'OPTIONS': {
 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
